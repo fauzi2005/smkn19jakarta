@@ -5,6 +5,14 @@
  */
 package views;
 
+import connectionDB.koneksi;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Fauzi
@@ -14,8 +22,64 @@ public class MasterDataGuru extends javax.swing.JFrame {
     /**
      * Creates new form MasterDataGuru
      */
+    
+    private Connection conn = new koneksi().connect();
+    private DefaultTableModel tabmode;
+    
+    protected void aktif(){
+       txtKodeGuru.setEnabled(true);
+        txtNip.setEnabled(true);
+        txtNamaGuru.setEnabled(true);
+        txtTempatLahir.setEnabled(true);
+        txtTanggalLahir.setEnabled(true);
+        txtMataPelajaran.setEnabled(true);
+        txtNoHp.setEnabled(true);
+        txtAlamat.setEnabled(true);
+        
+        txtKodeGuru.requestFocus();
+    }
+    
+    protected void kosong(){
+        txtKodeGuru.setText("");
+        txtNip.setText("");
+        txtNamaGuru.setText("");
+        txtTempatLahir.setText("");
+        txtTanggalLahir.setText("");
+        rjk1.setSelected(true);
+        txtMataPelajaran.setText("");
+        txtNoHp.setText("");
+        txtAlamat.setText("");
+      
+    }
+    
+    protected void datatable(){
+    Object [] Baris = {"kode_guru ","nip_guru","nama_guru","tempat_lahir_guru","tanggal_lahir_guru","jenis_kelamin_guru","mata_pelajaran_guru","no_hp_guru","alamat_guru"};
+    tabmode = new DefaultTableModel(null, Baris);
+    tabelguru.setModel(tabmode);
+    try {
+    String sql = "Select * from tb_guru";
+        java.sql.Statement stat = conn.createStatement();
+        ResultSet hasil = stat.executeQuery(sql);
+        while (hasil.next()){
+            String a = hasil.getString("kode_guru");
+            String b = hasil.getString("nip_guru");
+            String c = hasil.getString("nama_guru");
+            String d = hasil.getString("tempat_lahir_guru");
+            String e = hasil.getString("tanggal_lahir_guru");
+            String f = hasil.getString("jenis_kelamin_guru");
+            String g = hasil.getString("mata_pelajaran_guru");
+            String h = hasil.getString("no_hp_guru");
+            String i = hasil.getString("alamat_guru");
+            String[] data={a,b,c,d,e,f,g,h,i};
+            tabmode.addRow(data);
+        }
+    }catch (SQLException e){
+        }
+    }
+    
     public MasterDataGuru() {
         initComponents();
+        datatable();
     }
 
     /**
@@ -27,30 +91,371 @@ public class MasterDataGuru extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelguru = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        txtKodeGuru = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txtNip = new javax.swing.JTextField();
+        txtNamaGuru = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtTempatLahir = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtTanggalLahir = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        txtMataPelajaran = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txtNoHp = new javax.swing.JTextField();
+        txtAlamat = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        btnEdit = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
+        txtDelete = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
+        rjk1 = new javax.swing.JRadioButton();
+        rjk2 = new javax.swing.JRadioButton();
+        btnExit = new javax.swing.JButton();
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable3);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("MASTER DATA GURU");
+
+        tabelguru.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+            }
+        ));
+        tabelguru.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelguruMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tabelguru);
+
+        jLabel2.setText("KODE GURU");
+
+        jLabel3.setText("NIP");
+
+        jLabel4.setText("NAMA GURU");
+
+        jLabel5.setText("TEMPAT LAHIR");
+
+        jLabel6.setText("TANGGAL LAHIR");
+
+        jLabel7.setText("JENIS KELAMIN");
+
+        jLabel8.setText("MATA PELAJARAN");
+
+        jLabel9.setText("NO HP");
+
+        jLabel10.setText("ALAMAT");
+
+        btnEdit.setText("EDIT");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
+
+        btnSave.setText("SAVE");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+
+        txtDelete.setText("DELETE");
+        txtDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDeleteActionPerformed(evt);
+            }
+        });
+
+        btnClear.setText("CLEAR");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
+
+        rjk1.setText("LAKI-LAKI");
+
+        rjk2.setText("PEREMPUAN");
+        rjk2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rjk2ActionPerformed(evt);
+            }
+        });
+
+        btnExit.setText("EXIT");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addGap(41, 41, 41))
             .addGroup(layout.createSequentialGroup()
-                .addGap(135, 135, 135)
-                .addComponent(jLabel1)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addGap(54, 54, 54)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNip, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtKodeGuru, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel10)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(19, 19, 19)
+                                        .addComponent(btnSave)))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNoHp, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNamaGuru, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtTanggalLahir, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtMataPelajaran, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtTempatLahir, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(btnEdit)
+                                        .addGap(53, 53, 53)
+                                        .addComponent(txtDelete)
+                                        .addGap(48, 48, 48)
+                                        .addComponent(btnClear)
+                                        .addGap(32, 32, 32)
+                                        .addComponent(btnExit))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(rjk1)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rjk2))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(252, 252, 252)
+                        .addComponent(jLabel1)))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(0, 284, Short.MAX_VALUE))
+                .addGap(5, 5, 5)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(txtKodeGuru, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtNip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtNamaGuru, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtTempatLahir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtTanggalLahir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(rjk1)
+                    .addComponent(rjk2))
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtMataPelajaran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(txtNoHp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(txtAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtDelete)
+                    .addComponent(btnClear)
+                    .addComponent(btnSave)
+                    .addComponent(btnEdit)
+                    .addComponent(btnExit))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(108, 108, 108))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // TODO add your handling code here:
+        try{
+            String sql = "update tb_guru set nip_guru=?,nama_guru=?,tempat_lahir_guru=?,tanggal_lahir_guru=?,jenis_kelamin_guru	=?,mata_pelajaran_guru=?,no_hp_guru=?,alamat_guru=? where kode_guru =?";
+            PreparedStatement stat = conn.prepareStatement(sql);
+            stat.setString(1, txtNip.getText());
+            stat.setString(2, txtNamaGuru.getText());
+            stat.setString(3, txtTempatLahir.getText());
+            stat.setString(4, txtTanggalLahir.getText());
+            
+            String jkel="";
+            if (rjk1.isSelected()) jkel="LAKI-LAKI";
+            else jkel="PEREMPUAN";
+            stat.setString(5, jkel);
+            
+            
+            stat.setString(6, txtMataPelajaran.getText());
+            stat.setString(7, txtNoHp.getText());
+            stat.setString(8, txtAlamat.getText());
+            stat.setString(9, txtKodeGuru.getText());
+            
+            stat.executeUpdate();
+            JOptionPane.showMessageDialog(null,"Data Berhasil diubah");
+            kosong();
+            txtKodeGuru.requestFocus();
+            datatable();
+        }catch (SQLException e){
+            JOptionPane.showMessageDialog(null, "Data Gagal Diubah"+e);
+        }
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        // TODO add your handling code here:
+        kosong();
+        datatable();
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+         String sql = "insert into tb_guru values (?,?,?,?,?,?,?,?,?)";
+        try{
+            PreparedStatement stat = conn.prepareStatement(sql);
+            stat.setString(1, txtKodeGuru.getText());
+            stat.setString(2, txtNip.getText());
+            stat.setString(3, txtNamaGuru.getText());
+            stat.setString(4, txtTempatLahir.getText());
+            stat.setString(5, txtTanggalLahir.getText());            
+            
+            String jkel="";
+            if (rjk1.isSelected()) jkel="LAKI-LAKI";
+            else jkel="PEREMPUAN";
+            stat.setString(6 , jkel);
+            
+            stat.setString(7, txtMataPelajaran.getText());
+            stat.setString(8, txtNoHp.getText());
+            stat.setString(9, txtAlamat.getText());
+            
+            stat.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan");
+            kosong();
+            txtKodeGuru.requestFocus();
+            datatable();
+        }catch (SQLException e){
+            JOptionPane.showMessageDialog(null, "Data Gagal Disimpan"+e);
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void txtDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDeleteActionPerformed
+        // TODO add your handling code here:
+        int ok = JOptionPane.showConfirmDialog(null,"hapus","Konfirmasi Dialog", JOptionPane.YES_NO_CANCEL_OPTION);
+            if (ok==0){
+                String sql="delete from tb_guru where kode_guru ='"+txtKodeGuru.getText()+"'";
+                try {
+                    PreparedStatement stat = conn.prepareStatement(sql);
+                    stat.executeUpdate();
+                    JOptionPane.showMessageDialog(null, "data berhasil dihapus");
+                    kosong();
+                    txtKodeGuru.requestFocus();
+                    datatable();
+            }catch (SQLException e){
+                JOptionPane.showMessageDialog(null, "Data gagal dihapus"+e);
+            }
+            }
+    }//GEN-LAST:event_txtDeleteActionPerformed
+
+    private void tabelguruMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelguruMouseClicked
+        // TODO add your handling code here:
+        int bar = tabelguru.getSelectedRow();
+        String a = tabmode.getValueAt (bar, 0).toString();
+        String b = tabmode.getValueAt (bar, 1).toString();
+        String c = tabmode.getValueAt (bar, 2).toString();
+        String d = tabmode.getValueAt (bar, 3).toString();
+        String e = tabmode.getValueAt (bar, 4).toString();
+        String f = tabmode.getValueAt (bar, 5).toString();
+        String g = tabmode.getValueAt (bar, 6).toString();
+        String h = tabmode.getValueAt (bar, 7).toString();
+        String i = tabmode.getValueAt (bar, 8).toString();
+        
+        txtKodeGuru.setText(a);
+        txtNip.setText(b);
+        txtNamaGuru.setText(c);
+        txtTempatLahir.setText(d);
+        txtTanggalLahir.setText(e);
+        
+        
+        if(f.equals("LAKI-LAKI")) {rjk1.setSelected(true); rjk2.setSelected(false);}
+        else {rjk1.setSelected(false); rjk2.setSelected(true);}
+        
+        txtMataPelajaran.setText(g);
+        txtNoHp.setText(h);
+        txtAlamat.setText(i);
+    }//GEN-LAST:event_tabelguruMouseClicked
+
+    private void rjk2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rjk2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rjk2ActionPerformed
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -88,6 +493,34 @@ public class MasterDataGuru extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnSave;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable3;
+    private javax.swing.JRadioButton rjk1;
+    private javax.swing.JRadioButton rjk2;
+    private javax.swing.JTable tabelguru;
+    private javax.swing.JTextField txtAlamat;
+    private javax.swing.JButton txtDelete;
+    private javax.swing.JTextField txtKodeGuru;
+    private javax.swing.JTextField txtMataPelajaran;
+    private javax.swing.JTextField txtNamaGuru;
+    private javax.swing.JTextField txtNip;
+    private javax.swing.JTextField txtNoHp;
+    private javax.swing.JTextField txtTanggalLahir;
+    private javax.swing.JTextField txtTempatLahir;
     // End of variables declaration//GEN-END:variables
 }
