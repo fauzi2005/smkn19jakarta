@@ -1,58 +1,117 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package views;
 
+import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
-import java.sql.SQLException;
-import javax.swing.table.DefaultTableModel;
-import connectionDB.koneksi;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import connectionDB.koneksi;
+import java.awt.event.ActionEvent;
+import static views.MenuUtama.maximixed;
 /**
  *
- * @author Fauzi
+ * @author KKP FOCON UNINDRA
  */
-public class MasterDataJurusan extends javax.swing.JFrame {
+public class MasterDataJurusan extends javax.swing.JDialog {
+    
+    public final Connection conn = new koneksi().connect();
 
-    /**
-     * Creates new form MasterDataJurusan
-     */
-    public MasterDataJurusan() {
-        initComponents();
-        this.TampilData();
+    private DefaultTableModel tabmode;
+    
+    // frame maks dan geser panel
+    static boolean maximixed = true;
+    int xMouse;
+    int yMouse;
+    
+    private void aktif(){
+        txtKodeJurusan.setEnabled(true);
+        txtNamaJurusan.setEnabled(true);
     }
     
-    private DefaultTableModel DftTblModel_jurusan;
-    private String SQL; 
+    protected void kosong(){
+        txtKodeJurusan.setText(null);
+        txtNamaJurusan.setText(null);
+    }
     
-    public void TampilData() {
-        DftTblModel_jurusan = new DefaultTableModel();
-        DftTblModel_jurusan.addColumn("KODE JURUSAN");
-        DftTblModel_jurusan.addColumn("NAMA JURUSAN");
-        tableJurusan.setModel(DftTblModel_jurusan);
-        Connection conn = new koneksi().connect();
-        try {
-            java.sql.Statement stmt = conn.createStatement();
-            SQL = "SELECT * FROM tb_jurusan";
-            java.sql.ResultSet res = stmt.executeQuery(SQL);
-            while (res.next()) {
-                DftTblModel_jurusan.addRow(new Object[]{
-                    res.getString("kode_jurusan"),
-                    res.getString("nama_jurusan")
-                });
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+    public void noTable(){
+        int Baris = tabmode.getRowCount();
+        for (int a=0; a<Baris; a++)
+        {
+            String nomor = String.valueOf(a+1);
+            tabmode.setValueAt(nomor, a, 0);
         }
     }
     
-    public void ClearForm(){
-        txtKodeJurusan.setText("");
-        txtNamaJurusan.setText("");
+    public void dataTable(){
+        Object[] Baris = {"No", "Kode Jurusan", "Nama Jurusan"};
+        tabmode = new DefaultTableModel(null, Baris);
+        tableJurusan.setModel(tabmode);
+        String sql = "SELECT * FROM tb_jurusan";
+        try{
+            java.sql.Statement stat = conn.createStatement();
+            ResultSet hasil = stat.executeQuery(sql);
+            while (hasil.next()){
+                String kode_jurusan = hasil.getString("kode_jurusan");
+                String nama_jurusan = hasil.getString("nama_jurusan");
+                String[] data = {"", kode_jurusan, nama_jurusan};
+                tabmode.addRow(data);
+                noTable();
+            }
+        } catch (Exception e){
+        }
+    }
+    
+    public void lebarKolom(){
+        TableColumn column;
+        tableJurusan.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        column = tableJurusan.getColumnModel().getColumn(0);
+        column.setPreferredWidth(180);
+        column = tableJurusan.getColumnModel().getColumn(1);
+        column.setPreferredWidth(400);
+        column = tableJurusan.getColumnModel().getColumn(2);
+        column.setPreferredWidth(400); 
+    }
+    
+    public void pencarian(String sql){
+        Object[] Baris = {"No", "Kode Jurusan", "Nama Jurusan"};
+        tabmode = new DefaultTableModel(null, Baris);
+        tableJurusan.setModel(tabmode);
+        int brs = tableJurusan.getRowCount();
+        for (int i = 0; 1 < brs; i++){
+            tabmode.removeRow(1);
+        }
+        try{
+            java.sql.Statement stat = conn.createStatement();
+            ResultSet hasil = stat.executeQuery(sql);
+            while (hasil.next()){
+                String kode_jurusan = hasil.getString("kode_jurusan");
+                String nama_jurusan = hasil.getString("nama_jurusan");
+                String[] data = {"", kode_jurusan, nama_jurusan};
+                tabmode.addRow(data);
+                noTable();
+            }
+        } catch(Exception e){
+            
+        }
+    }
+
+    /**
+     * Creates new form dataSupplier
+     */
+    public MasterDataJurusan(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
+        aktif();
+        dataTable();
+        lebarKolom();
+        txtKodeJurusan.requestFocus();
     }
 
     /**
@@ -64,69 +123,144 @@ public class MasterDataJurusan extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        panelHeader = new javax.swing.JPanel();
+        btnClose = new javax.swing.JButton();
+        labelNama = new javax.swing.JLabel();
+        labelKodeSupplier = new javax.swing.JLabel();
+        labelNamaSupplier = new javax.swing.JLabel();
+        txtKodeJurusan = new javax.swing.JTextField();
         txtNamaJurusan = new javax.swing.JTextField();
-        btnSave = new javax.swing.JButton();
-        btnEdit = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
-        btnClear = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableJurusan = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
-        txtKodeJurusan = new javax.swing.JTextField();
+        btnSimpan = new javax.swing.JButton();
+        btnUbah = new javax.swing.JButton();
+        btnHapus = new javax.swing.JButton();
+        btnBersih = new javax.swing.JButton();
+        btnCari = new javax.swing.JButton();
+        txtCari = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
+        setType(java.awt.Window.Type.POPUP);
 
-        jLabel1.setText("Master Data Jurusan");
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setText("Nama Jurusan");
-
-        txtNamaJurusan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNamaJurusanActionPerformed(evt);
+        panelHeader.setBackground(new java.awt.Color(51, 51, 255));
+        panelHeader.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                panelHeaderMouseDragged(evt);
+            }
+        });
+        panelHeader.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                panelHeaderMousePressed(evt);
             }
         });
 
-        btnSave.setText("SAVE");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
+        btnClose.setBackground(new java.awt.Color(204, 102, 255));
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_Delete_30px_4.png"))); // NOI18N
+        btnClose.setContentAreaFilled(false);
+        btnClose.setOpaque(true);
+        btnClose.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_Delete_30px_5.png"))); // NOI18N
+        btnClose.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCloseMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCloseMouseExited(evt);
+            }
+        });
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
+                btnCloseActionPerformed(evt);
             }
         });
 
-        btnEdit.setText("EDIT");
-        btnEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditActionPerformed(evt);
+        labelNama.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        labelNama.setForeground(new java.awt.Color(255, 255, 255));
+        labelNama.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelNama.setText("Data Jurusan");
+
+        javax.swing.GroupLayout panelHeaderLayout = new javax.swing.GroupLayout(panelHeader);
+        panelHeader.setLayout(panelHeaderLayout);
+        panelHeaderLayout.setHorizontalGroup(
+            panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHeaderLayout.createSequentialGroup()
+                .addComponent(labelNama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        panelHeaderLayout.setVerticalGroup(
+            panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panelHeaderLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelNama, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        labelKodeSupplier.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelKodeSupplier.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelKodeSupplier.setText("Kode Jurusan");
+        labelKodeSupplier.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        labelNamaSupplier.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelNamaSupplier.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelNamaSupplier.setText("Nama Jurusan");
+        labelNamaSupplier.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        txtKodeJurusan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtKodeJurusan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtKodeJurusanKeyPressed(evt);
             }
         });
 
-        btnDelete.setText("DELETE");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
+        txtNamaJurusan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtNamaJurusan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNamaJurusanKeyPressed(evt);
             }
         });
 
-        btnClear.setText("CLEAR");
-        btnClear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClearActionPerformed(evt);
-            }
-        });
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText(":");
+        jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText(":");
+        jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+
+        tableJurusan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tableJurusan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
             }
         ));
+        tableJurusan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tableJurusan.setRowHeight(30);
+        tableJurusan.setRowMargin(2);
         tableJurusan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableJurusanMouseClicked(evt);
@@ -134,143 +268,420 @@ public class MasterDataJurusan extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tableJurusan);
 
-        jLabel3.setText("Kode Jurusan");
-
-        txtKodeJurusan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtKodeJurusanActionPerformed(evt);
+        btnSimpan.setBackground(new java.awt.Color(204, 204, 204));
+        btnSimpan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save-30-w11.png"))); // NOI18N
+        btnSimpan.setText("Simpan");
+        btnSimpan.setContentAreaFilled(false);
+        btnSimpan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSimpan.setOpaque(true);
+        btnSimpan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSimpanMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSimpanMouseExited(evt);
             }
         });
+        btnSimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimpanActionPerformed(evt);
+            }
+        });
+
+        btnUbah.setBackground(new java.awt.Color(204, 204, 204));
+        btnUbah.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnUbah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit-30-w11.png"))); // NOI18N
+        btnUbah.setText("Ubah");
+        btnUbah.setContentAreaFilled(false);
+        btnUbah.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUbah.setOpaque(true);
+        btnUbah.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnUbahMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnUbahMouseExited(evt);
+            }
+        });
+        btnUbah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUbahActionPerformed(evt);
+            }
+        });
+
+        btnHapus.setBackground(new java.awt.Color(204, 204, 204));
+        btnHapus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete-30-w11.png"))); // NOI18N
+        btnHapus.setText("Hapus");
+        btnHapus.setContentAreaFilled(false);
+        btnHapus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnHapus.setOpaque(true);
+        btnHapus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnHapusMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnHapusMouseExited(evt);
+            }
+        });
+        btnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHapusActionPerformed(evt);
+            }
+        });
+
+        btnBersih.setBackground(new java.awt.Color(204, 204, 204));
+        btnBersih.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnBersih.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clear-30-w11.png"))); // NOI18N
+        btnBersih.setText("Bersih");
+        btnBersih.setContentAreaFilled(false);
+        btnBersih.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBersih.setOpaque(true);
+        btnBersih.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBersihMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBersihMouseExited(evt);
+            }
+        });
+        btnBersih.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBersihActionPerformed(evt);
+            }
+        });
+
+        btnCari.setBackground(new java.awt.Color(204, 204, 204));
+        btnCari.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnCari.setText("Pencarian");
+        btnCari.setContentAreaFilled(false);
+        btnCari.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCari.setOpaque(true);
+        btnCari.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCariMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCariMouseExited(evt);
+            }
+        });
+        btnCari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCariActionPerformed(evt);
+            }
+        });
+
+        txtCari.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtCari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCariKeyTyped(evt);
+            }
+        });
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel1.setBackground(new java.awt.Color(255, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_Info_30px_6.png"))); // NOI18N
+        jLabel1.setText("   Information");
+        jLabel1.setOpaque(true);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextArea1.setRows(5);
+        jTextArea1.setText("\n   * Form ini digunakan untuk data Jurusan\n   * Tekan SIMPAN untuk menyimpan data\n   * Tekan UBAH untuk mengedit data\n   * Tekan BERSIH untuk membersihkan field\n   * Tekan HAPUS untuk menghapus data");
+        jScrollPane3.setViewportView(jTextArea1);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelHeader, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 958, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnUbah, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnBersih, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(labelKodeSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(labelNamaSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNamaJurusan)
+                                    .addComponent(txtKodeJurusan, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtCari)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnCari, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtKodeJurusan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(5, 5, 5)
+                                .addComponent(txtNamaJurusan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(labelKodeSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(5, 5, 5)
+                                    .addComponent(labelNamaSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(53, 53, 53)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnUbah, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBersih, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCari, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(148, 148, 148))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtNamaJurusan, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(111, 111, 111))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnSave)
-                .addGap(37, 37, 37)
-                .addComponent(btnEdit)
-                .addGap(33, 33, 33)
-                .addComponent(btnDelete)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnClear)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addComponent(txtKodeJurusan, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(111, 111, 111))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(txtKodeJurusan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(txtNamaJurusan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(119, 119, 119)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSave)
-                    .addComponent(btnEdit)
-                    .addComponent(btnDelete)
-                    .addComponent(btnClear))
-                .addGap(65, 65, 65)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNamaJurusanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaJurusanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNamaJurusanActionPerformed
+    private void btnCloseMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseEntered
+        btnClose.setBackground(Color.red);
+    }//GEN-LAST:event_btnCloseMouseEntered
 
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        try {
-            Connection conn = new koneksi().connect();
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO tb_jurusan(kode_jurusan, nama_jurusan) VALUES(?, ?)");
-            stmt.setString(1, txtKodeJurusan.getText());
-            stmt.setString(2, txtNamaJurusan.getText());
-            stmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Data berhasil disimpan", "Pesan", JOptionPane.INFORMATION_MESSAGE);
-            TampilData();
-            ClearForm();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }//GEN-LAST:event_btnSaveActionPerformed
+    private void btnCloseMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseExited
+        btnClose.setBackground(new Color(204,102,255));
+    }//GEN-LAST:event_btnCloseMouseExited
 
-    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        // TODO add your handling code here:
-        try {
-            Connection conn = new koneksi().connect();
-            PreparedStatement stmt = conn.prepareStatement("UPDATE tb_jurusan SET "
-                    + "nama_jurusan=? WHERE kode_jurusan=?");
-            stmt.setString(1, txtNamaJurusan.getText());
-            stmt.setString(2, txtKodeJurusan.getText());
-            stmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Data berhasil diubah", "Pesan", JOptionPane.INFORMATION_MESSAGE);
-            TampilData();
-            ClearForm();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnCloseActionPerformed
+
+    private void panelHeaderMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelHeaderMouseDragged
+        if(maximixed){
+            int x = evt.getXOnScreen();
+            int y = evt.getYOnScreen();
+            this.setLocation(x - xMouse, y - yMouse);
         }
-    }//GEN-LAST:event_btnEditActionPerformed
+    }//GEN-LAST:event_panelHeaderMouseDragged
+
+    private void panelHeaderMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelHeaderMousePressed
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_panelHeaderMousePressed
 
     private void tableJurusanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableJurusanMouseClicked
-        // TODO add your handling code here:
-        int baris = tableJurusan.getSelectedRow();
-        txtKodeJurusan.setText(DftTblModel_jurusan.getValueAt(baris, 0).toString());
-        txtNamaJurusan.setText(DftTblModel_jurusan.getValueAt(baris, 1).toString());
+        int bar = tableJurusan.getSelectedRow();
+        String kodeJurusan = tabmode.getValueAt(bar, 1).toString();
+        String namaJurusan = tabmode.getValueAt(bar, 2).toString();
+        
+        txtKodeJurusan.setText(kodeJurusan);
+        txtNamaJurusan.setText(namaJurusan);
     }//GEN-LAST:event_tableJurusanMouseClicked
 
-    private void txtKodeJurusanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKodeJurusanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtKodeJurusanActionPerformed
+    private void btnSimpanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSimpanMouseEntered
+        btnSimpan.setBackground(new Color(0,0,204));
+        btnSimpan.setForeground(Color.white);
+    }//GEN-LAST:event_btnSimpanMouseEntered
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-        Connection conn = new koneksi().connect();
-        int confirm = JOptionPane.showConfirmDialog(null, "Apakah anda yakin ingin menghapus data tersebut?", 
-                "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (confirm == 0) {
+    private void btnSimpanMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSimpanMouseExited
+        btnSimpan.setBackground(new Color(204,204,204));
+        btnSimpan.setForeground(Color.black);
+    }//GEN-LAST:event_btnSimpanMouseExited
+
+    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
+        // validasi
+        if(txtKodeJurusan.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Kode Jurusan tidak boleh kosong");
+        } else if (txtNamaJurusan.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Nama Jurusan tidak boleh kosong");
+        } else {
+        
+            String sql = "INSERT INTO tb_jurusan(kode_jurusan, nama_jurusan) VALUES (?,?)";
+
             try {
-                java.sql.PreparedStatement stmt = conn.prepareStatement("DELETE FROM tb_jurusan WHERE kode_jurusan ='" + 
-                        txtKodeJurusan.getText() + "'");
-                stmt.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Data berhasil dihapus", "Pesan", JOptionPane.INFORMATION_MESSAGE);
-                TampilData();
-                ClearForm();
+                PreparedStatement stat = conn.prepareStatement(sql);
+                stat.setString(1, txtKodeJurusan.getText());
+                stat.setString(2, txtNamaJurusan.getText());
+                stat.executeUpdate();
+                JOptionPane.showMessageDialog(null,"Data Berhasil Disimpan");
+                //            String refresh = "select * from tb_barang";
+                kosong();
+                dataTable();
+                lebarKolom();
+                txtKodeJurusan.requestFocus();
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Data gagal di hapus" + e.getMessage(), "Pesan", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Data Gagal Disimpan"+e);
             }
         }
-    }//GEN-LAST:event_btnDeleteActionPerformed
+    }//GEN-LAST:event_btnSimpanActionPerformed
 
-    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+    private void btnUbahMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUbahMouseEntered
+        btnUbah.setBackground(new Color(0,0,204));
+        btnUbah.setForeground(Color.white);
+    }//GEN-LAST:event_btnUbahMouseEntered
+
+    private void btnUbahMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUbahMouseExited
+        btnUbah.setBackground(new Color(204,204,204));
+        btnUbah.setForeground(Color.black);
+    }//GEN-LAST:event_btnUbahMouseExited
+
+    private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
+        String sql = "UPDATE tb_jurusan SET nama_jurusan=? WHERE kode_jurusan=?";
+        
+        try {
+            PreparedStatement stat = conn.prepareStatement(sql);
+            stat.setString(1, txtNamaJurusan.getText());
+            stat.setString(2, txtKodeJurusan.getText());
+            stat.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan");
+            //            String refresh = "select * from tb_barang";
+            kosong();
+            dataTable();
+            lebarKolom();
+            txtKodeJurusan.requestFocus();
+        } catch (SQLException e){
+            JOptionPane.showMessageDialog(null, "Data Gagal Disimpan"+e);
+        }
+    }//GEN-LAST:event_btnUbahActionPerformed
+
+    private void btnHapusMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHapusMouseEntered
+        btnHapus.setBackground(Color.red);
+        btnHapus.setForeground(Color.white);
+    }//GEN-LAST:event_btnHapusMouseEntered
+
+    private void btnHapusMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHapusMouseExited
+        btnHapus.setBackground(new Color(204,204,204));
+        btnHapus.setForeground(Color.black);
+    }//GEN-LAST:event_btnHapusMouseExited
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+        int ok = JOptionPane.showConfirmDialog (null," Apakah Anda Yakin Ingin "
+            + "Menghapus Data","Konfirmasi Dialog", JOptionPane.YES_NO_OPTION);
+        if (ok==0){
+            String sql="DELETE FROM tb_jurusan WHERE kode_jurusan ='" + txtKodeJurusan.getText() + "'";
+            try {
+                PreparedStatement stat=conn.prepareStatement(sql);
+                stat.executeUpdate();
+                JOptionPane.showMessageDialog(null,"Data Berhasil Dihapus");
+                kosong();
+                dataTable();
+                lebarKolom();
+                txtKodeJurusan.requestFocus();
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Data Gagal Dihapus"+e);
+            }
+        }
+    }//GEN-LAST:event_btnHapusActionPerformed
+
+    private void btnBersihMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBersihMouseEntered
+        btnBersih.setBackground(new Color(0,0,204));
+        btnBersih.setForeground(Color.white);
+    }//GEN-LAST:event_btnBersihMouseEntered
+
+    private void btnBersihMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBersihMouseExited
+        btnBersih.setBackground(new Color(204,204,204));
+        btnBersih.setForeground(Color.black);
+    }//GEN-LAST:event_btnBersihMouseExited
+
+    private void btnBersihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBersihActionPerformed
+
+        txtKodeJurusan.requestFocus();
+        kosong();
+    }//GEN-LAST:event_btnBersihActionPerformed
+
+    private void btnCariMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCariMouseEntered
+        btnCari.setBackground(new Color(0,0,204));
+        btnCari.setForeground(Color.white);
+    }//GEN-LAST:event_btnCariMouseEntered
+
+    private void btnCariMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCariMouseExited
+        btnCari.setBackground(new Color(204,204,204));
+        btnCari.setForeground(Color.black);
+    }//GEN-LAST:event_btnCariMouseExited
+
+    private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
+
+    }//GEN-LAST:event_btnCariActionPerformed
+
+    private void txtCariKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCariKeyTyped
+        String sqlPencarian = "SELECT * FROM tb_jurusan WHERE kode_jurusan like '%"+txtCari.getText()+"%' or nama_jurusan like '%"+txtCari.getText()+"%'";
+        pencarian(sqlPencarian);
+        lebarKolom();
+    }//GEN-LAST:event_txtCariKeyTyped
+
+    private void txtKodeJurusanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtKodeJurusanKeyPressed
+        if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+            txtNamaJurusan.requestFocus();
+        }
+    }//GEN-LAST:event_txtKodeJurusanKeyPressed
+
+    private void txtNamaJurusanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNamaJurusanKeyPressed
         // TODO add your handling code here:
-        ClearForm();
-    }//GEN-LAST:event_btnClearActionPerformed
+        if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+            btnSimpanActionPerformed(new ActionEvent(evt.getSource(), evt.getID(), "Key Press Simpan"));
+        }
+    }//GEN-LAST:event_txtNamaJurusanKeyPressed
 
     /**
      * @param args the command line arguments
@@ -298,25 +709,44 @@ public class MasterDataJurusan extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MasterDataJurusan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MasterDataJurusan().setVisible(true);
+                MasterDataJurusan dialog = new MasterDataJurusan(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnClear;
-    private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnEdit;
-    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnBersih;
+    private javax.swing.JButton btnCari;
+    private javax.swing.JButton btnClose;
+    private javax.swing.JButton btnHapus;
+    private javax.swing.JButton btnSimpan;
+    private javax.swing.JButton btnUbah;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel labelKodeSupplier;
+    private javax.swing.JLabel labelNama;
+    private javax.swing.JLabel labelNamaSupplier;
+    private javax.swing.JPanel panelHeader;
     private javax.swing.JTable tableJurusan;
+    private javax.swing.JTextField txtCari;
     private javax.swing.JTextField txtKodeJurusan;
     private javax.swing.JTextField txtNamaJurusan;
     // End of variables declaration//GEN-END:variables

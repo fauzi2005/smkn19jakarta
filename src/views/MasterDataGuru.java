@@ -22,6 +22,15 @@ public class MasterDataGuru extends javax.swing.JFrame {
     /**
      * Creates new form MasterDataGuru
      */
+    public MasterDataGuru(java.awt.Frame parent, boolean modal) {
+//        super(parent, modal);
+        initComponents();
+        aktif();
+//        dataTable();
+//        tanggal();
+//        lebarKolom();
+//        txtKodeSupplier.requestFocus();
+    }
     
     private Connection conn = new koneksi().connect();
     private DefaultTableModel tabmode;
