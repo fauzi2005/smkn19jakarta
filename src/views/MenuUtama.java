@@ -505,7 +505,7 @@ public class MenuUtama extends javax.swing.JFrame {
         btnBarangMasuk.setBackground(new java.awt.Color(0, 153, 153));
         btnBarangMasuk.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnBarangMasuk.setForeground(new java.awt.Color(255, 255, 255));
-        btnBarangMasuk.setText("  > Barang Masuk");
+        btnBarangMasuk.setText("  > Input Nilai");
         btnBarangMasuk.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnBarangMasuk.setContentAreaFilled(false);
         btnBarangMasuk.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -529,7 +529,7 @@ public class MenuUtama extends javax.swing.JFrame {
         btnBarangKeluar.setBackground(new java.awt.Color(0, 153, 153));
         btnBarangKeluar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnBarangKeluar.setForeground(new java.awt.Color(255, 255, 255));
-        btnBarangKeluar.setText("  > Barang Keluar");
+        btnBarangKeluar.setText("  > Pembelian Seragam Sekolah");
         btnBarangKeluar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnBarangKeluar.setContentAreaFilled(false);
         btnBarangKeluar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -570,7 +570,7 @@ public class MenuUtama extends javax.swing.JFrame {
         btnLapBarangMasuk.setBackground(new java.awt.Color(0, 153, 153));
         btnLapBarangMasuk.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnLapBarangMasuk.setForeground(new java.awt.Color(255, 255, 255));
-        btnLapBarangMasuk.setText("  > Laporan Barang Masuk");
+        btnLapBarangMasuk.setText("  > Laporan Data Siswa");
         btnLapBarangMasuk.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnLapBarangMasuk.setContentAreaFilled(false);
         btnLapBarangMasuk.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -594,7 +594,7 @@ public class MenuUtama extends javax.swing.JFrame {
         btnLapBarangKeluar.setBackground(new java.awt.Color(0, 153, 153));
         btnLapBarangKeluar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnLapBarangKeluar.setForeground(new java.awt.Color(255, 255, 255));
-        btnLapBarangKeluar.setText("  > Laporan Barang Keluar");
+        btnLapBarangKeluar.setText("  > Laporan Data Guru");
         btnLapBarangKeluar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnLapBarangKeluar.setContentAreaFilled(false);
         btnLapBarangKeluar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -618,7 +618,7 @@ public class MenuUtama extends javax.swing.JFrame {
         btnLapStokBarang.setBackground(new java.awt.Color(0, 153, 153));
         btnLapStokBarang.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnLapStokBarang.setForeground(new java.awt.Color(255, 255, 255));
-        btnLapStokBarang.setText("  > Laporan Stok Barang");
+        btnLapStokBarang.setText("  > Laporan Data Tata Usaha");
         btnLapStokBarang.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnLapStokBarang.setContentAreaFilled(false);
         btnLapStokBarang.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -642,7 +642,7 @@ public class MenuUtama extends javax.swing.JFrame {
         btnLapDataSupplier.setBackground(new java.awt.Color(0, 153, 153));
         btnLapDataSupplier.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnLapDataSupplier.setForeground(new java.awt.Color(255, 255, 255));
-        btnLapDataSupplier.setText("  > Laporan Data Supplier");
+        btnLapDataSupplier.setText("  > Laporan Nilai Siswa");
         btnLapDataSupplier.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnLapDataSupplier.setContentAreaFilled(false);
         btnLapDataSupplier.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
