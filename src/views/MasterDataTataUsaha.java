@@ -18,6 +18,12 @@ public class MasterDataTataUsaha extends javax.swing.JFrame {
     private Connection conn = new koneksi().connect();
     private DefaultTableModel tabmode;
     
+    public MasterDataTataUsaha(java.awt.Frame parent, boolean modal) {
+        initComponents();
+        aktif();
+        datatable();
+    }
+    
     protected void aktif(){
         tid.setEnabled(true);
         tnama.setEnabled(true);
@@ -140,7 +146,7 @@ public class MasterDataTataUsaha extends javax.swing.JFrame {
 
         jTextField1.setText("jTextField1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -400,6 +406,7 @@ public class MasterDataTataUsaha extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void bsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsaveActionPerformed

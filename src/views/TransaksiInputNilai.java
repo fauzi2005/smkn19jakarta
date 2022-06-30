@@ -16,6 +16,12 @@ public class TransaksiInputNilai extends javax.swing.JFrame {
 
     private Connection conn = new koneksi().connect();
     private DefaultTableModel tabmode;
+
+    public TransaksiInputNilai(java.awt.Frame parent, boolean modal) {
+        initComponents();
+        aktif();
+        datatable();
+    }
     
     protected void aktif(){
         
@@ -43,7 +49,7 @@ public class TransaksiInputNilai extends javax.swing.JFrame {
     }
     
     protected void datatable(){
-    Object [] Baris = {"KODE GURU","NIS SISWA","TUGAS","UTS","UAS"};
+    Object [] Baris = {"KODE GURU","NIS SISWA","TUGAS","UTS","UAS", "RATA-RATA"};
     tabmode = new DefaultTableModel(null, Baris);
     tabel_nilai.setModel(tabmode);
     String sql = "select * from transaksi_nilai";
@@ -56,8 +62,9 @@ public class TransaksiInputNilai extends javax.swing.JFrame {
             String c = hasil.getString("tugas");
             String d = hasil.getString("uts");
             String e = hasil.getString("uas");
+            String f = hasil.getString("rata_rata");
             
-            String[] data={a,b,c,d,e};
+            String[] data={a,b,c,d,e,f};
             tabmode.addRow(data);
         }
     }catch (Exception e){
@@ -67,6 +74,7 @@ public class TransaksiInputNilai extends javax.swing.JFrame {
     
     public TransaksiInputNilai() {
         initComponents();
+        aktif();
         datatable();
     }
 
@@ -123,7 +131,7 @@ public class TransaksiInputNilai extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("TRANSAKSI INPUT NILAI");
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 153));
@@ -334,8 +342,18 @@ public class TransaksiInputNilai extends javax.swing.JFrame {
         );
 
         bubah.setText("UBAH");
+        bubah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bubahActionPerformed(evt);
+            }
+        });
 
         bhapus.setText("HAPUS");
+        bhapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bhapusActionPerformed(evt);
+            }
+        });
 
         bclear.setText("CLEAR");
         bclear.addActionListener(new java.awt.event.ActionListener() {
@@ -435,6 +453,7 @@ public class TransaksiInputNilai extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void bcari_guruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcari_guruActionPerformed
@@ -467,14 +486,22 @@ public class TransaksiInputNilai extends javax.swing.JFrame {
 
     private void bsimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsimpanActionPerformed
         // TODO add your handling code here:
-        String sql = "insert into transaksi_nilai values (?,?,?,?,?)";
+        String sql = "insert into transaksi_nilai values (?,?,?,?,?,?)";
         try{
             PreparedStatement stat = conn.prepareStatement(sql);
             stat.setString(1, tkode_guru.getText());
             stat.setString(2, tnis_siswa.getText());
             stat.setInt(3, Integer.parseInt(ttugas.getText()));
             stat.setInt(4, Integer.parseInt(tuts.getText()));
-            stat.setInt(5, Integer.parseInt(tuts.getText()));
+            stat.setInt(5, Integer.parseInt(tuas.getText()));
+            
+            int tugas = Integer.parseInt(ttugas.getText());
+            int uts = Integer.parseInt(tuts.getText());
+            int uas = Integer.parseInt(tuas.getText());            
+            
+            double mean = (tugas + uts + uas) / 3;
+            
+            stat.setDouble(6, mean);
             
             stat.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan");
@@ -531,6 +558,54 @@ public class TransaksiInputNilai extends javax.swing.JFrame {
         tuts.setText(d);
         tuas.setText(e);
     }//GEN-LAST:event_tabel_nilaiMouseClicked
+
+    private void bubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bubahActionPerformed
+        // TODO add your handling code here:
+        try{
+            String sql = "UPDATE transaksi_nilai SET tugas=?, uts=?, uas=?, rata_rata=? WHERE kode_guru=? && nis_siswa=?";
+            PreparedStatement stat = conn.prepareStatement(sql);
+
+            stat.setString(5, tkode_guru.getText());
+            stat.setString(6, tnis_siswa.getText());
+            stat.setInt(1, Integer.parseInt(ttugas.getText()));
+            stat.setInt(2, Integer.parseInt(tuts.getText()));
+            stat.setInt(3, Integer.parseInt(tuas.getText()));
+            
+            int tugas = Integer.parseInt(ttugas.getText());
+            int uts = Integer.parseInt(tuts.getText());
+            int uas = Integer.parseInt(tuas.getText());            
+            
+            double mean = (tugas + uts + uas) / 3;
+            
+            stat.setDouble(4, mean);
+            
+            stat.executeUpdate();
+            JOptionPane.showMessageDialog(null,"Data Berhasil diubah");
+            kosong();
+            tkode_guru.requestFocus();
+            datatable();
+        } catch (SQLException e){
+            JOptionPane.showMessageDialog(null, "Data Gagal Diubah"+e);
+        }
+    }//GEN-LAST:event_bubahActionPerformed
+
+    private void bhapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bhapusActionPerformed
+        // TODO add your handling code here:
+        int ok = JOptionPane.showConfirmDialog(null,"hapus","Konfirmasi Dialog", JOptionPane.YES_NO_CANCEL_OPTION);
+        if (ok==0){
+            String sql="DELETE FROM transaksi_nilai WHERE kode_guru='"+tkode_guru.getText()+"' && nis_siswa='"+tnis_siswa.getText()+"'";
+            try {
+                PreparedStatement stat = conn.prepareStatement(sql);
+                stat.executeUpdate();
+                JOptionPane.showMessageDialog(null, "data berhasil dihapus");
+                kosong();
+                tkode_guru.requestFocus();
+                datatable();
+            } catch (SQLException e){
+                JOptionPane.showMessageDialog(null, "Data gagal dihapus"+e);
+            }
+        }
+    }//GEN-LAST:event_bhapusActionPerformed
 
     /**
      * @param args the command line arguments

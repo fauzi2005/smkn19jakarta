@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 29, 2022 at 04:00 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- Generation Time: Jun 30, 2022 at 07:47 AM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -59,6 +59,7 @@ CREATE TABLE `tabelsiswa` (
 --
 
 INSERT INTO `tabelsiswa` (`nis`, `nisn`, `nama_siswa`, `tempat_lahir_siswa`, `tanggal_lahir_siswa`, `alamat_siswa`, `jenis_kelamin_siswa`, `agama_siswa`, `jurusan_siswa`, `kelas_siswa`, `no_telp_siswa`, `email_siswa`) VALUES
+('1', '1239298', 'Fauzi Ajah', 'Jakarta', '1998-05-20', 'Nax Klender', 'Laki-Laki', 'ISLAM', 'Item 3', '10', '085776509645', 'fauzimaulanahabibi@gmail.com'),
 ('12044', '201912044', 'ABDUL ROSYADI', 'Jakarta', '2002-06-04', 'Banten', 'Laki-laki', 'Islam', 'Akuntansi', '10', '81273878123', 'abdulrosyadi@gmail.com'),
 ('12048', '201912048', 'ADITYA RAMLAN', 'Bogor', '1999-11-28', 'Bekasi', 'Laki-laki', 'Islam', 'Akuntansi', '10', '18387231', 'adityaramlan@gmail.com'),
 ('12059', '201912059', 'ALFIAN WILLY', 'Yogyakarta', '1999-06-07', 'Tangerang', 'Laki-laki', 'Islam', 'Akuntansi', '10', '12371283', 'alfianwilly@gmail.com'),
@@ -92,8 +93,7 @@ INSERT INTO `tabelsiswa` (`nis`, `nisn`, `nama_siswa`, `tempat_lahir_siswa`, `ta
 ('12261', '201912261', 'SOPIA FRADELLA', 'Banten', '2001-03-26', 'Jakarta', 'Perempuan', 'Islam', 'Akuntansi', '10', '1,98231E+14', 'sopiafradella@gmail.com'),
 ('12264', '201912264', 'SYAFAAH DAFINA ALIAH', 'Jakarta', '2001-05-08', 'Jakarta', 'Perempuan', 'Islam', 'Akuntansi', '10', '9324', 'syafaahdafinaaliah@gmail.com'),
 ('12272', '201912272', 'THORIQ RIVAI', 'Jakarta', '2002-09-24', 'Jakarta', 'Laki-laki', 'Islam', 'Akuntansi', '10', '81273878123', 'thoriqrivai@gmail.com'),
-('12279', '201912279', 'WIDA NAHYATUL NAFISAH', 'Jakarta', '2003-12-17', 'Jakarta', 'Perempuan', 'Islam', 'Akuntansi', '10', '18387231', 'widanahyatulnafisah@gmail.com'),
-('281923', '1239298', 'Fauzi Ajah', 'Jakarta', '1998-05-20', 'Nax Klender', 'Laki-Laki', 'ISLAM', 'Item 3', '10', '085776509645', 'fauzimaulanahabibi@gmail.com');
+('12279', '201912279', 'WIDA NAHYATUL NAFISAH', 'Jakarta', '2003-12-17', 'Jakarta', 'Perempuan', 'Islam', 'Akuntansi', '10', '18387231', 'widanahyatulnafisah@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -180,7 +180,7 @@ CREATE TABLE `tb_guru` (
 
 INSERT INTO `tb_guru` (`kode_guru`, `nip_guru`, `nama_guru`, `tempat_lahir_guru`, `tanggal_lahir_guru`, `jenis_kelamin_guru`, `mata_pelajaran_guru`, `no_hp_guru`, `alamat_guru`) VALUES
 ('123a', '123', 'Fauzi', 'La', '12121997', 'LAKI-LAKI', 'MTK', '08111111111111', 'Bogor'),
-('KASJDHS', '91827393', 'ANWAR', 'TASIK', 'RAHASIA', 'LAKI-LAKI', 'PEMROGRAMAN', '012732392', 'JAKARTA SELATAN');
+('12', '1231', 'Fauzi', 'Ahai', 'POKCOU', 'LAKI-LAKI', 'asdas', '12341', 'BOGOR');
 
 -- --------------------------------------------------------
 
@@ -223,6 +223,28 @@ INSERT INTO `tb_mapel` (`kode_mapel`, `nama_mapel`, `kode_jurusan`) VALUES
 ('admin', 'admin', 'Admin Perkantoran'),
 ('asa', 'ass', 'AP'),
 ('asad', 'asdas', 'Admin Perkantoran');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transaksi_nilai`
+--
+
+CREATE TABLE `transaksi_nilai` (
+  `kode_guru` varchar(20) NOT NULL,
+  `nis_siswa` varchar(20) NOT NULL,
+  `tugas` int(10) NOT NULL,
+  `uts` int(10) NOT NULL,
+  `uas` int(10) NOT NULL,
+  `rata_rata` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `transaksi_nilai`
+--
+
+INSERT INTO `transaksi_nilai` (`kode_guru`, `nis_siswa`, `tugas`, `uts`, `uas`, `rata_rata`) VALUES
+('123a', '1', 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
