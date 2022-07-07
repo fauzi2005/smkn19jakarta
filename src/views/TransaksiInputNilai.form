@@ -470,6 +470,9 @@
                   <Font name="Times New Roman" size="11" style="1"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tcariActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="bcari">
               <Properties>
@@ -499,7 +502,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="bclear">
           <Properties>
-            <Property name="text" type="java.lang.String" value="CLEAR"/>
+            <Property name="text" type="java.lang.String" value="BERSIHKAN"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bclearActionPerformed"/>

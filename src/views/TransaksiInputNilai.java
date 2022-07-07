@@ -49,7 +49,7 @@ public class TransaksiInputNilai extends javax.swing.JFrame {
     }
     
     protected void datatable(){
-    Object [] Baris = {"KODE GURU","NIS SISWA","TUGAS","UTS","UAS", "RATA-RATA"};
+    Object [] Baris = {"KODE GURU","NIS SISWA","TUGAS","UTS","UAS","RATA-RATA"};
     tabmode = new DefaultTableModel(null, Baris);
     tabel_nilai.setModel(tabmode);
     String sql = "select * from transaksi_nilai";
@@ -304,6 +304,11 @@ public class TransaksiInputNilai extends javax.swing.JFrame {
         jLabel9.setText("CARI NAMA SISWA");
 
         tcari.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        tcari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tcariActionPerformed(evt);
+            }
+        });
 
         bcari.setText("CARI");
         bcari.addActionListener(new java.awt.event.ActionListener() {
@@ -355,7 +360,7 @@ public class TransaksiInputNilai extends javax.swing.JFrame {
             }
         });
 
-        bclear.setText("CLEAR");
+        bclear.setText("BERSIHKAN");
         bclear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bclearActionPerformed(evt);
@@ -477,8 +482,8 @@ public class TransaksiInputNilai extends javax.swing.JFrame {
             java.sql.Statement stat = conn.createStatement();
             ResultSet hasil = stat.executeQuery(sql);
             while(hasil.next()){
-                String mp = hasil.getString("nama_siswa");
-                tnama_siswa.setText(mp);
+                String ns = hasil.getString("nama_siswa");
+                tnama_siswa.setText(ns);
                 tnama_siswa.setEnabled(false);
             }
         } catch (Exception e) {}
@@ -497,7 +502,7 @@ public class TransaksiInputNilai extends javax.swing.JFrame {
             
             int tugas = Integer.parseInt(ttugas.getText());
             int uts = Integer.parseInt(tuts.getText());
-            int uas = Integer.parseInt(tuas.getText());            
+            int uas = Integer.parseInt(tuas.getText());         
             
             double mean = (tugas + uts + uas) / 3;
             
@@ -606,6 +611,10 @@ public class TransaksiInputNilai extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_bhapusActionPerformed
+
+    private void tcariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tcariActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tcariActionPerformed
 
     /**
      * @param args the command line arguments
