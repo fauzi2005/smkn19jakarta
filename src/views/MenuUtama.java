@@ -1,5 +1,6 @@
 package views;
 
+import connectionDB.koneksi;
 import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Graphics;
@@ -8,11 +9,19 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.sql.Connection;
+import java.util.HashMap;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.plaf.RootPaneUI;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 //import views.about;
 /**
  *
@@ -83,7 +92,7 @@ public class MenuUtama extends javax.swing.JFrame {
         btnKelas = new javax.swing.JButton();
         panelTransaksi = new javax.swing.JPanel();
         btnInputNilai = new javax.swing.JButton();
-        btnBarangKeluar = new javax.swing.JButton();
+        btnPembayaranSeragam = new javax.swing.JButton();
         panelLaporan = new javax.swing.JPanel();
         btnLapDataSiswa = new javax.swing.JButton();
         btnLapDataGuru = new javax.swing.JButton();
@@ -555,27 +564,27 @@ public class MenuUtama extends javax.swing.JFrame {
             }
         });
 
-        btnBarangKeluar.setBackground(new java.awt.Color(0, 153, 153));
-        btnBarangKeluar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnBarangKeluar.setForeground(new java.awt.Color(255, 255, 255));
-        btnBarangKeluar.setText("  > Pembelian Seragam Sekolah");
-        btnBarangKeluar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btnBarangKeluar.setContentAreaFilled(false);
-        btnBarangKeluar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnBarangKeluar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnBarangKeluar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnBarangKeluar.setOpaque(true);
-        btnBarangKeluar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnPembayaranSeragam.setBackground(new java.awt.Color(0, 153, 153));
+        btnPembayaranSeragam.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnPembayaranSeragam.setForeground(new java.awt.Color(255, 255, 255));
+        btnPembayaranSeragam.setText("  > Pembelian Seragam Sekolah");
+        btnPembayaranSeragam.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnPembayaranSeragam.setContentAreaFilled(false);
+        btnPembayaranSeragam.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPembayaranSeragam.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnPembayaranSeragam.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnPembayaranSeragam.setOpaque(true);
+        btnPembayaranSeragam.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnBarangKeluarMouseEntered(evt);
+                btnPembayaranSeragamMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnBarangKeluarMouseExited(evt);
+                btnPembayaranSeragamMouseExited(evt);
             }
         });
-        btnBarangKeluar.addActionListener(new java.awt.event.ActionListener() {
+        btnPembayaranSeragam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBarangKeluarActionPerformed(evt);
+                btnPembayaranSeragamActionPerformed(evt);
             }
         });
 
@@ -583,7 +592,7 @@ public class MenuUtama extends javax.swing.JFrame {
         panelTransaksi.setLayout(panelTransaksiLayout);
         panelTransaksiLayout.setHorizontalGroup(
             panelTransaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnBarangKeluar, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+            .addComponent(btnPembayaranSeragam, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
             .addComponent(btnInputNilai, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
         );
         panelTransaksiLayout.setVerticalGroup(
@@ -591,7 +600,7 @@ public class MenuUtama extends javax.swing.JFrame {
             .addGroup(panelTransaksiLayout.createSequentialGroup()
                 .addComponent(btnInputNilai, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(btnBarangKeluar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnPembayaranSeragam, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         panelLaporan.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -913,15 +922,15 @@ public class MenuUtama extends javax.swing.JFrame {
         btnInputNilai.setBackground(new Color(0,153,153));
     }//GEN-LAST:event_btnInputNilaiMouseExited
 
-    private void btnBarangKeluarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBarangKeluarMouseEntered
-        btnBarangKeluar.setForeground(Color.black);
-        btnBarangKeluar.setBackground(new Color(0,0,255));
-    }//GEN-LAST:event_btnBarangKeluarMouseEntered
+    private void btnPembayaranSeragamMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPembayaranSeragamMouseEntered
+        btnPembayaranSeragam.setForeground(Color.black);
+        btnPembayaranSeragam.setBackground(new Color(0,0,255));
+    }//GEN-LAST:event_btnPembayaranSeragamMouseEntered
 
-    private void btnBarangKeluarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBarangKeluarMouseExited
-        btnBarangKeluar.setForeground(Color.white);
-        btnBarangKeluar.setBackground(new Color(0,153,153));
-    }//GEN-LAST:event_btnBarangKeluarMouseExited
+    private void btnPembayaranSeragamMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPembayaranSeragamMouseExited
+        btnPembayaranSeragam.setForeground(Color.white);
+        btnPembayaranSeragam.setBackground(new Color(0,153,153));
+    }//GEN-LAST:event_btnPembayaranSeragamMouseExited
 
     private void btnLapDataSiswaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLapDataSiswaMouseEntered
         btnLapDataSiswa.setForeground(Color.black);
@@ -1002,14 +1011,26 @@ public class MenuUtama extends javax.swing.JFrame {
         new TransaksiInputNilai(this, rootPaneCheckingEnabled).show();
     }//GEN-LAST:event_btnInputNilaiActionPerformed
 
-    private void btnBarangKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBarangKeluarActionPerformed
+    private void btnPembayaranSeragamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPembayaranSeragamActionPerformed
         panelTransaksi.setVisible(false);
-//        new transaksiBarangKeluar(this, rootPaneCheckingEnabled).show();
-    }//GEN-LAST:event_btnBarangKeluarActionPerformed
+        new TransaksiSeragam(this, rootPaneCheckingEnabled).show();
+    }//GEN-LAST:event_btnPembayaranSeragamActionPerformed
 
     private void btnLapDataSiswaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLapDataSiswaActionPerformed
         panelLaporan.setVisible(false);
 //        new laporanBarangMasuk(this, rootPaneCheckingEnabled).show();
+        try {
+            String namaFile = "src/Report/ReportDataSiswa.jasper";
+            Connection conn = new koneksi().connect();
+            HashMap parameter = new HashMap();
+            File report_file = new File(namaFile);
+            JasperReport jasperReport = (JasperReport) JRLoader.loadObject(report_file.getPath());
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameter, conn);
+            JasperViewer.viewReport(jasperPrint, false); //coba
+            JasperViewer.setDefaultLookAndFeelDecorated(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        }
     }//GEN-LAST:event_btnLapDataSiswaActionPerformed
 
     private void btnLapDataGuruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLapDataGuruActionPerformed
@@ -1143,7 +1164,6 @@ public class MenuUtama extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbout;
-    private javax.swing.JButton btnBarangKeluar;
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnGuru;
     private javax.swing.JButton btnInputNilai;
@@ -1159,6 +1179,7 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JButton btnMasterData;
     private javax.swing.JButton btnMaximize;
     private javax.swing.JButton btnMinimize;
+    private javax.swing.JButton btnPembayaranSeragam;
     private javax.swing.JButton btnSiswa;
     private javax.swing.JButton btnTataUsaha;
     private javax.swing.JButton btnTransaksi;

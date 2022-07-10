@@ -684,7 +684,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnBarangKeluar" alignment="0" pref="200" max="32767" attributes="0"/>
+                  <Component id="btnPembayaranSeragam" alignment="0" pref="200" max="32767" attributes="0"/>
                   <Component id="btnInputNilai" alignment="0" pref="200" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
@@ -693,7 +693,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="btnInputNilai" min="-2" pref="45" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Component id="btnBarangKeluar" min="-2" pref="45" max="-2" attributes="0"/>
+                      <Component id="btnPembayaranSeragam" min="-2" pref="45" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -730,7 +730,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInputNilaiActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnBarangKeluar">
+            <Component class="javax.swing.JButton" name="btnPembayaranSeragam">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="99" green="99" red="0" type="rgb"/>
@@ -756,9 +756,9 @@
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnBarangKeluarMouseEntered"/>
-                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnBarangKeluarMouseExited"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBarangKeluarActionPerformed"/>
+                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnPembayaranSeragamMouseEntered"/>
+                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnPembayaranSeragamMouseExited"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPembayaranSeragamActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
