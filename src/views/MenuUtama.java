@@ -1036,11 +1036,36 @@ public class MenuUtama extends javax.swing.JFrame {
     private void btnLapDataGuruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLapDataGuruActionPerformed
         panelLaporan.setVisible(false);
 //        new laporanBarangKeluar(this, rootPaneCheckingEnabled).show();
+        try {
+            String namaFile = "src/Report/ReportDataGuru.jasper";
+            Connection conn = new koneksi().connect();
+            HashMap parameter = new HashMap();
+            File report_file = new File(namaFile);
+            JasperReport jasperReport = (JasperReport) JRLoader.loadObject(report_file.getPath());
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameter, conn);
+            JasperViewer.viewReport(jasperPrint, false); //coba
+            JasperViewer.setDefaultLookAndFeelDecorated(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        }
+        
     }//GEN-LAST:event_btnLapDataGuruActionPerformed
 
     private void btnLapTUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLapTUActionPerformed
         panelLaporan.setVisible(false);
 //        new laporanStokBarang(this, rootPaneCheckingEnabled).show();
+        try {
+            String namaFile = "src/Report/ReportDataTU.jasper";
+            Connection conn = new koneksi().connect();
+            HashMap parameter = new HashMap();
+            File report_file = new File(namaFile);
+            JasperReport jasperReport = (JasperReport) JRLoader.loadObject(report_file.getPath());
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameter, conn);
+            JasperViewer.viewReport(jasperPrint, false); //coba
+            JasperViewer.setDefaultLookAndFeelDecorated(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        }
     }//GEN-LAST:event_btnLapTUActionPerformed
 
     private void btnAboutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAboutMouseEntered
@@ -1070,6 +1095,18 @@ public class MenuUtama extends javax.swing.JFrame {
     private void btnLapNilaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLapNilaiActionPerformed
         panelLaporan.setVisible(false);
 //        new laporanDataSupplier(this, rootPaneCheckingEnabled).show();
+        try {
+            String namaFile = "src/Report/ReportNilaiSiswa.jasper";
+            Connection conn = new koneksi().connect();
+            HashMap parameter = new HashMap();
+            File report_file = new File(namaFile);
+            JasperReport jasperReport = (JasperReport) JRLoader.loadObject(report_file.getPath());
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameter, conn);
+            JasperViewer.viewReport(jasperPrint, false); //coba
+            JasperViewer.setDefaultLookAndFeelDecorated(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        }
     }//GEN-LAST:event_btnLapNilaiActionPerformed
 
     private void btnMapelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMapelMouseEntered
@@ -1122,6 +1159,18 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void btnLapSeragamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLapSeragamActionPerformed
         // TODO add your handling code here:
+        try {
+            String namaFile = "src/Report/ReportPembayaranSeragam.jasper";
+            Connection conn = new koneksi().connect();
+            HashMap parameter = new HashMap();
+            File report_file = new File(namaFile);
+            JasperReport jasperReport = (JasperReport) JRLoader.loadObject(report_file.getPath());
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameter, conn);
+            JasperViewer.viewReport(jasperPrint, false); //coba
+            JasperViewer.setDefaultLookAndFeelDecorated(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        }
     }//GEN-LAST:event_btnLapSeragamActionPerformed
 
     /**
