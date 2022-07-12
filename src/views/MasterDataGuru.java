@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -35,7 +36,6 @@ public class MasterDataGuru extends javax.swing.JFrame {
         txtNip.setEnabled(true);
         txtNamaGuru.setEnabled(true);
         txtTempatLahir.setEnabled(true);
-        txtTanggalLahir.setEnabled(true);
         txtMataPelajaran.setEnabled(true);
         txtNoHp.setEnabled(true);
         txtAlamat.setEnabled(true);
@@ -48,7 +48,7 @@ public class MasterDataGuru extends javax.swing.JFrame {
         txtNip.setText("");
         txtNamaGuru.setText("");
         txtTempatLahir.setText("");
-        txtTanggalLahir.setText("");
+        date.setDate(null);
         rjk1.setSelected(true);
         txtMataPelajaran.setText("");
         txtNoHp.setText("");
@@ -57,7 +57,7 @@ public class MasterDataGuru extends javax.swing.JFrame {
     }
     
     protected void datatable(){
-    Object [] Baris = {"kode_guru ","nip_guru","nama_guru","tempat_lahir_guru","tanggal_lahir_guru","jenis_kelamin_guru","mata_pelajaran_guru","no_hp_guru","alamat_guru"};
+    Object [] Baris = {"KODE GURU ","NIP","NAMA","TEMPAT LAHIR","TANGGAL LAHIRu","GENDER","MATPEL","NO HP","ALAMAT"};
     tabmode = new DefaultTableModel(null, Baris);
     tabelguru.setModel(tabmode);
     try {
@@ -100,8 +100,6 @@ public class MasterDataGuru extends javax.swing.JFrame {
         panelHeader = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tabelguru = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         txtKodeGuru = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -111,7 +109,6 @@ public class MasterDataGuru extends javax.swing.JFrame {
         txtTempatLahir = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtTanggalLahir = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtMataPelajaran = new javax.swing.JTextField();
@@ -126,6 +123,9 @@ public class MasterDataGuru extends javax.swing.JFrame {
         rjk1 = new javax.swing.JRadioButton();
         rjk2 = new javax.swing.JRadioButton();
         btnExit = new javax.swing.JButton();
+        date = new com.toedter.calendar.JDateChooser();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelguru = new javax.swing.JTable();
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -141,10 +141,11 @@ public class MasterDataGuru extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jTable3);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelHeader.setBackground(new java.awt.Color(0, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("MASTER DATA GURU");
 
@@ -152,32 +153,28 @@ public class MasterDataGuru extends javax.swing.JFrame {
         panelHeader.setLayout(panelHeaderLayout);
         panelHeaderLayout.setHorizontalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHeaderLayout.createSequentialGroup()
+                .addContainerGap(370, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(340, 340, 340))
         );
         panelHeaderLayout.setVerticalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+            .addGroup(panelHeaderLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        tabelguru.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
-            }
-        ));
-        tabelguru.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabelguruMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tabelguru);
+        getContentPane().add(panelHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, -1));
 
         jLabel2.setText("KODE GURU");
+
+        txtKodeGuru.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtKodeGuruActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("NIP");
 
@@ -246,113 +243,113 @@ public class MasterDataGuru extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(56, 56, 56)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnSave)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnEdit)))
+                        .addComponent(btnSave)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtDelete)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnClear)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnExit))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(rjk1)
-                                .addGap(18, 18, 18)
-                                .addComponent(rjk2))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtTanggalLahir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
-                                .addComponent(txtNip, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtNamaGuru, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtKodeGuru, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtTempatLahir, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(txtMataPelajaran, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNoHp, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(52, Short.MAX_VALUE))
+                        .addComponent(btnEdit)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtDelete)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnClear)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnExit))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(rjk1)
+                        .addGap(18, 18, 18)
+                        .addComponent(rjk2))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(txtNip, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                        .addComponent(txtNamaGuru, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtKodeGuru, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtTempatLahir, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(txtMataPelajaran, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNoHp, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtKodeGuru, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(38, 38, 38)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtNip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtNamaGuru, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtTempatLahir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addComponent(txtTanggalLahir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                    .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(rjk1)
                     .addComponent(rjk2))
-                .addGap(31, 31, 31)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txtMataPelajaran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(txtNoHp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(txtAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDelete)
                     .addComponent(btnClear)
                     .addComponent(btnSave)
                     .addComponent(btnEdit)
                     .addComponent(btnExit))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(panelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 91, -1, 480));
+
+        tabelguru.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+            }
+        ));
+        tabelguru.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelguruMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tabelguru);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, 640, 123));
 
         pack();
         setLocationRelativeTo(null);
@@ -360,13 +357,16 @@ public class MasterDataGuru extends javax.swing.JFrame {
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
+        String tampilan = "yyyy-MM-dd";
+        SimpleDateFormat fm = new SimpleDateFormat(tampilan);
+        String tanggal = String.valueOf(fm.format(date.getDate()));
         try{
             String sql = "update tb_guru set nip_guru=?,nama_guru=?,tempat_lahir_guru=?,tanggal_lahir_guru=?,jenis_kelamin_guru	=?,mata_pelajaran_guru=?,no_hp_guru=?,alamat_guru=? where kode_guru =?";
             PreparedStatement stat = conn.prepareStatement(sql);
             stat.setString(1, txtNip.getText());
             stat.setString(2, txtNamaGuru.getText());
             stat.setString(3, txtTempatLahir.getText());
-            stat.setString(4, txtTanggalLahir.getText());
+            stat.setString(4, tanggal);
             
             String jkel="";
             if (rjk1.isSelected()) jkel="LAKI-LAKI";
@@ -397,6 +397,10 @@ public class MasterDataGuru extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        String tampilan = "yyyy-MM-dd";
+        SimpleDateFormat fm = new SimpleDateFormat(tampilan);
+        String tanggal = String.valueOf(fm.format(date.getDate()));
+        
          String sql = "insert into tb_guru values (?,?,?,?,?,?,?,?,?)";
         try{
             PreparedStatement stat = conn.prepareStatement(sql);
@@ -404,7 +408,7 @@ public class MasterDataGuru extends javax.swing.JFrame {
             stat.setString(2, txtNip.getText());
             stat.setString(3, txtNamaGuru.getText());
             stat.setString(4, txtTempatLahir.getText());
-            stat.setString(5, txtTanggalLahir.getText());            
+            stat.setString(5, tanggal);           
             
             String jkel="";
             if (rjk1.isSelected()) jkel="LAKI-LAKI";
@@ -460,8 +464,6 @@ public class MasterDataGuru extends javax.swing.JFrame {
         txtNip.setText(b);
         txtNamaGuru.setText(c);
         txtTempatLahir.setText(d);
-        txtTanggalLahir.setText(e);
-        
         
         if(f.equals("LAKI-LAKI")) {rjk1.setSelected(true); rjk2.setSelected(false);}
         else {rjk1.setSelected(false); rjk2.setSelected(true);}
@@ -479,6 +481,10 @@ public class MasterDataGuru extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void txtKodeGuruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKodeGuruActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtKodeGuruActionPerformed
 
     /**
      * @param args the command line arguments
@@ -520,6 +526,7 @@ public class MasterDataGuru extends javax.swing.JFrame {
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnSave;
+    private com.toedter.calendar.JDateChooser date;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -545,7 +552,6 @@ public class MasterDataGuru extends javax.swing.JFrame {
     private javax.swing.JTextField txtNamaGuru;
     private javax.swing.JTextField txtNip;
     private javax.swing.JTextField txtNoHp;
-    private javax.swing.JTextField txtTanggalLahir;
     private javax.swing.JTextField txtTempatLahir;
     // End of variables declaration//GEN-END:variables
 }

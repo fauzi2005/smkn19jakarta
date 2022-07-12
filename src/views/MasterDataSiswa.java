@@ -207,7 +207,7 @@ public class MasterDataSiswa extends javax.swing.JFrame {
 
         ckelas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "10", "11", "12" }));
 
-        cjurusan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cjurusan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Satu", "DKV", "Perkantoran", "Akuntansi", "Pemasaran" }));
 
         bsave.setBackground(new java.awt.Color(255, 255, 255));
         bsave.setText("SAVE");

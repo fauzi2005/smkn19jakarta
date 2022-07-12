@@ -184,7 +184,7 @@ public class MasterDataTataUsaha extends javax.swing.JFrame {
 
         rjk2.setText("Perempuan");
 
-        cjurusan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cjurusan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Satu", "DKV", "Perkantoran", "Akuntansi", "Pemasaran" }));
 
         talamat.setColumns(20);
         talamat.setRows(5);
