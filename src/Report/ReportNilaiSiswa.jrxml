@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="aabb1372-7d94-4ac1-9ee0-a1718d963c63">
-	<property name="ireport.zoom" value="0.620921323059155"/>
+	<property name="ireport.zoom" value="0.6830134553650706"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<queryString language="SQL">
@@ -28,26 +28,32 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="66" splitType="Stretch">
+		<band height="136" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="df2092e5-72ec-4d01-8510-a5295a6d4c7f" x="174" y="18" width="460" height="48"/>
+				<reportElement uuid="df2092e5-72ec-4d01-8510-a5295a6d4c7f" x="181" y="0" width="460" height="48"/>
 				<textElement textAlignment="Center">
-					<font fontName="Times New Roman" size="36" isBold="true"/>
+					<font fontName="Times New Roman" size="30" isBold="true"/>
 				</textElement>
 				<text><![CDATA[LAPORAN NILAI SISWA]]></text>
 			</staticText>
-		</band>
-	</title>
-	<pageHeader>
-		<band height="63" splitType="Stretch">
+			<image>
+				<reportElement uuid="64597447-cd5b-49d5-ba5c-07f981337e60" x="26" y="0" width="77" height="82"/>
+				<imageExpression><![CDATA["F:\\SEMESTER 6\\Pemograman Visual\\Logo SMKN 19 JAKARTA\\Logo SMKN 19\\LOGO SMKN 19 JAKARTA.png"]]></imageExpression>
+			</image>
 			<staticText>
-				<reportElement uuid="299b7140-e0f7-4bcf-b02c-e5065320d797" x="278" y="0" width="254" height="30"/>
+				<reportElement uuid="299b7140-e0f7-4bcf-b02c-e5065320d797" x="278" y="52" width="254" height="30"/>
 				<textElement textAlignment="Center">
-					<font fontName="Times New Roman" size="24" isBold="true"/>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[SMKN 19 JAKARTA]]></text>
 			</staticText>
+			<line>
+				<reportElement uuid="0bc83462-95a0-4ce7-ac24-78692984cc22" x="0" y="110" width="802" height="1"/>
+			</line>
 		</band>
+	</title>
+	<pageHeader>
+		<band height="6" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
 		<band height="36" splitType="Stretch">
@@ -142,10 +148,32 @@
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="159" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="ccd586f9-b0ce-45c2-8aaa-6eeb8505ccfc" x="665" y="24" width="100" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jakarta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5be83e80-e9fe-4a14-a0d4-391454540dd6" x="665" y="44" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kepala Sekolah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0fb264da-aa97-466d-a3dc-28098f475f62" x="665" y="139" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Drs. H. Sobirin, M. Pd.]]></text>
+			</staticText>
+		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>

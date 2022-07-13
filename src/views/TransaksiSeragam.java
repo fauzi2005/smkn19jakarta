@@ -29,10 +29,11 @@ public class TransaksiSeragam extends javax.swing.JFrame {
         nama_pengurus.setEnabled(true);
         nis_siswa.setEnabled(true);
         nama_siswa.setEnabled(true);
-        kelas.setEnabled(true);
         jurusan.setEnabled(true);
-        harga.setEnabled(true);
+        harga.setEnabled(false);
         tcari.setEnabled(true);
+        tjenis.setEnabled(false);
+        tukuran.setEnabled(false);
         
         id_tu.requestFocus();
     }
@@ -42,15 +43,17 @@ public class TransaksiSeragam extends javax.swing.JFrame {
         nama_pengurus.setText("");
         nis_siswa.setText("");
         nama_siswa.setText("");
-        kelas.setText("");
         jurusan.setText("");
-        ukuran.setSelectedIndex(0);
+        cjenis.setSelectedIndex(0);
+        cukuran.setSelectedIndex(0);
         harga.setText("");
+        tjenis.setText("");
+        tukuran.setText("");
         tcari.setText("");
     }
     
     protected void datatable(){
-    Object [] Baris = {"PENGURUS","NIS SISWA","NAMA","KELAS","JURUSAN","UKURAN","HARGA"};
+    Object [] Baris = {"PENGURUS","NIS SISWA","NAMA","JURUSAN","JENIS","UKURAN","HARGA"};
     tabmode = new DefaultTableModel(null, Baris);
     tabelseragam.setModel(tabmode);
     String sql = "select * from transaksi_pembayaran_seragam";
@@ -61,8 +64,8 @@ public class TransaksiSeragam extends javax.swing.JFrame {
             String a = hasil.getString("nama_tu");
             String b = hasil.getString("nis_siswa");
             String c = hasil.getString("nama_siswa");
-            String d = hasil.getString("kelas");
-            String e = hasil.getString("jurusan");
+            String d = hasil.getString("jurusan");
+            String e = hasil.getString("jenis_seragam");
             String f = hasil.getString("ukuran");
             String g = hasil.getString("harga");
             
@@ -105,10 +108,13 @@ public class TransaksiSeragam extends javax.swing.JFrame {
         nama_siswa = new javax.swing.JTextField();
         nis_siswa = new javax.swing.JTextField();
         cari_nis_siswa = new javax.swing.JButton();
-        kelas = new javax.swing.JTextField();
         jurusan = new javax.swing.JTextField();
-        ukuran = new javax.swing.JComboBox<>();
+        cukuran = new javax.swing.JComboBox<>();
         harga = new javax.swing.JTextField();
+        cjenis = new javax.swing.JComboBox<>();
+        tjenis = new javax.swing.JTextField();
+        tukuran = new javax.swing.JTextField();
+        bhitung = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -124,6 +130,7 @@ public class TransaksiSeragam extends javax.swing.JFrame {
         bhapus = new javax.swing.JButton();
         bubah = new javax.swing.JButton();
         bsimpan = new javax.swing.JButton();
+        bkeluar = new javax.swing.JButton();
 
         jLabel9.setText("jLabel9");
 
@@ -131,7 +138,7 @@ public class TransaksiSeragam extends javax.swing.JFrame {
 
         jTextField1.setText("jTextField1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 153, 0));
 
@@ -144,9 +151,9 @@ public class TransaksiSeragam extends javax.swing.JFrame {
 
         jLabel3.setText("NAMA SISWA");
 
-        jLabel4.setText("KELAS");
+        jLabel4.setText("JURUSAN");
 
-        jLabel5.setText("JURUSAN");
+        jLabel5.setText("JENIS SERAGAM");
 
         jLabel6.setText("UKURAN");
 
@@ -159,7 +166,36 @@ public class TransaksiSeragam extends javax.swing.JFrame {
             }
         });
 
-        ukuran.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Satu", "XXL", "XL", "L", "M", "S" }));
+        cukuran.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih", "XXL", "XL", "L", "M", "S" }));
+        cukuran.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cukuranActionPerformed(evt);
+            }
+        });
+
+        harga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hargaActionPerformed(evt);
+            }
+        });
+
+        cjenis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih", "A", "B", "C", "D" }));
+        cjenis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cjenisActionPerformed(evt);
+            }
+        });
+
+        tjenis.setText("*");
+
+        tukuran.setText("*");
+
+        bhitung.setText("Hitung");
+        bhitung.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bhitungActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -178,15 +214,24 @@ public class TransaksiSeragam extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addGap(8, 8, 8)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(harga, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(harga, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bhitung))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(nis_siswa, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(86, 86, 86)
                         .addComponent(cari_nis_siswa))
-                    .addComponent(kelas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jurusan, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ukuran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nama_siswa))
+                    .addComponent(nama_siswa)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cjenis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cukuran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(72, 72, 72)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tjenis)
+                            .addComponent(tukuran)))
+                    .addComponent(jurusan))
                 .addGap(132, 132, 132))
         );
         jPanel2Layout.setVerticalGroup(
@@ -204,19 +249,22 @@ public class TransaksiSeragam extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(kelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
                     .addComponent(jurusan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(cjenis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tjenis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(ukuran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cukuran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tukuran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(harga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(harga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bhitung))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -347,6 +395,13 @@ public class TransaksiSeragam extends javax.swing.JFrame {
             }
         });
 
+        bkeluar.setText("KELUAR");
+        bkeluar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bkeluarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -359,6 +414,10 @@ public class TransaksiSeragam extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(bsimpan)
                                 .addGap(18, 18, 18)
@@ -366,11 +425,9 @@ public class TransaksiSeragam extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(bhapus)
                                 .addGap(18, 18, 18)
-                                .addComponent(bbersih))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addComponent(bbersih)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(bkeluar)))))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -387,7 +444,8 @@ public class TransaksiSeragam extends javax.swing.JFrame {
                     .addComponent(bbersih)
                     .addComponent(bhapus)
                     .addComponent(bubah)
-                    .addComponent(bsimpan))
+                    .addComponent(bsimpan)
+                    .addComponent(bkeluar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -432,10 +490,6 @@ public class TransaksiSeragam extends javax.swing.JFrame {
                 nama_siswa.setText(ns);
                 nama_siswa.setEnabled(false);
                 
-                String kls = hasil.getString("kelas_siswa");
-                kelas.setText(kls);
-                kelas.setEnabled(false);
-                
                 String jrs = hasil.getString("jurusan_siswa");
                 jurusan.setText(jrs);
                 jurusan.setEnabled(false);
@@ -451,10 +505,10 @@ public class TransaksiSeragam extends javax.swing.JFrame {
             stat.setString(1, nama_pengurus.getText());
             stat.setString(2, nis_siswa.getText());
             stat.setString(3, nama_siswa.getText());
-            stat.setString(4, kelas.getText());
-            stat.setString(5, jurusan.getText());
-            stat.setString(6, ukuran.getSelectedItem().toString());
-            stat.setInt(7, Integer.parseInt(harga.getText()));
+            stat.setString(4, jurusan.getText());
+            stat.setString(5, cjenis.getSelectedItem().toString());
+            stat.setString(6, cukuran.getSelectedItem().toString());
+            stat.setString(7, harga.getText());
             
             stat.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan");
@@ -475,10 +529,10 @@ public class TransaksiSeragam extends javax.swing.JFrame {
             stat.setString(1, nama_pengurus.getText());
             stat.setString(2, nis_siswa.getText());
             stat.setString(3, nama_siswa.getText());
-            stat.setString(4, kelas.getText());
-            stat.setString(5, jurusan.getText());
-            stat.setString(6, ukuran.getSelectedItem().toString());
-            stat.setInt(7, Integer.parseInt(harga.getText()));
+            stat.setString(4, jurusan.getText());
+            stat.setString(5, cjenis.getSelectedItem().toString());
+            stat.setString(6, cukuran.getSelectedItem().toString());
+            stat.setString(7, harga.getText());
             
             stat.executeUpdate();
             JOptionPane.showMessageDialog(null,"Data Berhasil diubah");
@@ -504,9 +558,9 @@ public class TransaksiSeragam extends javax.swing.JFrame {
         nama_pengurus.setText(a);
         nis_siswa.setText(b);
         nama_siswa.setText(c);
-        kelas.setText(d);
-        jurusan.setText(e);
-        ukuran.setSelectedItem(f);
+        jurusan.setText(d);
+        cjenis.setSelectedItem(e);
+        cukuran.setSelectedItem(f);
         harga.setText(g);
     }//GEN-LAST:event_tabelseragamMouseClicked
 
@@ -536,7 +590,7 @@ public class TransaksiSeragam extends javax.swing.JFrame {
 
     private void bcariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcariActionPerformed
         // TODO add your handling code here:
-        Object [] Baris = {"PENGURUS","NIS SISWA","NAMA","KELAS","JURUSAN","UKURAN","HARGA"};
+        Object [] Baris = {"PENGURUS","NIS SISWA","NAMA","JURUSAN","JENIS","UKURAN","HARGA"};
         tabmode = new DefaultTableModel(null, Baris);
         tabelseragam.setModel(tabmode);
         String sql = "Select * from transaksi_pembayaran_seragam where nis_siswa='"+tcari.getText()+"'";
@@ -547,8 +601,8 @@ public class TransaksiSeragam extends javax.swing.JFrame {
                 String a = hasil.getString("nama_tu");
                 String b = hasil.getString("nis_siswa");
                 String c = hasil.getString("nama_siswa");
-                String d = hasil.getString("kelas");
-                String e = hasil.getString("jurusan");
+                String d = hasil.getString("jurusan");
+                String e = hasil.getString("jenis_seragam");
                 String f = hasil.getString("ukuran");
                 String g = hasil.getString("harga");
             
@@ -557,6 +611,69 @@ public class TransaksiSeragam extends javax.swing.JFrame {
             }
         }catch (Exception e){}
     }//GEN-LAST:event_bcariActionPerformed
+
+    private void bkeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bkeluarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_bkeluarActionPerformed
+
+    private void cjenisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cjenisActionPerformed
+        // TODO add your handling code here:
+        String pilih, jenis;
+        double harga;
+        jenis = String.valueOf(cjenis.getSelectedItem());
+        
+        if (jenis.equals ("A")) {
+            harga = 100000;
+        }else if (jenis.equals ("B")){
+            harga = 75000;
+        }else if (jenis.equals ("C")){
+            harga = 85000;
+        }else if (jenis.equals ("D")){
+            harga = 50000;
+        }else {
+            harga = 0;
+        }
+        tjenis.setText (""+harga);
+    }//GEN-LAST:event_cjenisActionPerformed
+
+    private void cukuranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cukuranActionPerformed
+        // TODO add your handling code here:
+        String ukuran;
+        double harga;
+        ukuran = String.valueOf(cukuran.getSelectedItem());
+        
+        if (ukuran.equals ("XXL")) {
+            harga = 20000;
+        }else if (ukuran.equals ("XL")){
+            harga = 10000;
+        }else if (ukuran.equals ("L")){
+            harga = 0;
+        }else if (ukuran.equals ("M")){
+            harga = 0;
+        }else if (ukuran.equals ("S")){
+            harga = 0;
+        }else {
+            harga = 0;
+        }
+        tukuran.setText (""+harga);
+        
+    }//GEN-LAST:event_cukuranActionPerformed
+
+    private void hargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hargaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hargaActionPerformed
+
+    private void bhitungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bhitungActionPerformed
+        // TODO add your handling code here:
+        double hargajenis, hargaukuran, totalharga;
+        
+        hargajenis = Double.parseDouble(this.tjenis.getText());
+        hargaukuran = Double.parseDouble(this.tukuran.getText());
+        
+        totalharga = (hargajenis + hargaukuran);
+        harga.setText(""+totalharga);
+    }//GEN-LAST:event_bhitungActionPerformed
 
     /**
      * @param args the command line arguments
@@ -597,10 +714,14 @@ public class TransaksiSeragam extends javax.swing.JFrame {
     private javax.swing.JButton bbersih;
     private javax.swing.JButton bcari;
     private javax.swing.JButton bhapus;
+    private javax.swing.JButton bhitung;
+    private javax.swing.JButton bkeluar;
     private javax.swing.JButton bsimpan;
     private javax.swing.JButton bubah;
     private javax.swing.JButton cari_id_tu;
     private javax.swing.JButton cari_nis_siswa;
+    private javax.swing.JComboBox<String> cjenis;
+    private javax.swing.JComboBox<String> cukuran;
     private javax.swing.JTextField harga;
     private javax.swing.JTextField id_tu;
     private javax.swing.JLabel jLabel1;
@@ -622,12 +743,12 @@ public class TransaksiSeragam extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTextField jurusan;
-    private javax.swing.JTextField kelas;
     private javax.swing.JTextField nama_pengurus;
     private javax.swing.JTextField nama_siswa;
     private javax.swing.JTextField nis_siswa;
     private javax.swing.JTable tabelseragam;
     private javax.swing.JTextField tcari;
-    private javax.swing.JComboBox<String> ukuran;
+    private javax.swing.JTextField tjenis;
+    private javax.swing.JTextField tukuran;
     // End of variables declaration//GEN-END:variables
 }

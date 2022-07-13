@@ -25,6 +25,7 @@ public class MasterDataGuru extends javax.swing.JFrame {
      */
     public MasterDataGuru(java.awt.Frame parent, boolean modal) {
         initComponents();
+        datatable();
         aktif();
     }
     
@@ -57,7 +58,7 @@ public class MasterDataGuru extends javax.swing.JFrame {
     }
     
     protected void datatable(){
-    Object [] Baris = {"KODE GURU ","NIP","NAMA","TEMPAT LAHIR","TANGGAL LAHIRu","GENDER","MATPEL","NO HP","ALAMAT"};
+    Object [] Baris = {"KODE GURU","NIP","NAMA","TEMPAT LAHIR","TANGGAL LAHIR","GENDER","MATPEL","NO HP","ALAMAT"};
     tabmode = new DefaultTableModel(null, Baris);
     tabelguru.setModel(tabmode);
     try {
@@ -114,18 +115,19 @@ public class MasterDataGuru extends javax.swing.JFrame {
         txtMataPelajaran = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         txtNoHp = new javax.swing.JTextField();
-        txtAlamat = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        btnEdit = new javax.swing.JButton();
-        btnSave = new javax.swing.JButton();
-        txtDelete = new javax.swing.JButton();
-        btnClear = new javax.swing.JButton();
         rjk1 = new javax.swing.JRadioButton();
         rjk2 = new javax.swing.JRadioButton();
-        btnExit = new javax.swing.JButton();
         date = new com.toedter.calendar.JDateChooser();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtAlamat = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelguru = new javax.swing.JTable();
+        btnSave = new javax.swing.JButton();
+        btnEdit = new javax.swing.JButton();
+        txtDelete = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
+        btnExit = new javax.swing.JButton();
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -192,34 +194,6 @@ public class MasterDataGuru extends javax.swing.JFrame {
 
         jLabel10.setText("ALAMAT");
 
-        btnEdit.setText("EDIT");
-        btnEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditActionPerformed(evt);
-            }
-        });
-
-        btnSave.setText("SAVE");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
-            }
-        });
-
-        txtDelete.setText("DELETE");
-        txtDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDeleteActionPerformed(evt);
-            }
-        });
-
-        btnClear.setText("CLEAR");
-        btnClear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClearActionPerformed(evt);
-            }
-        });
-
         rjk1.setText("LAKI-LAKI");
 
         rjk2.setText("PEREMPUAN");
@@ -229,12 +203,9 @@ public class MasterDataGuru extends javax.swing.JFrame {
             }
         });
 
-        btnExit.setText("EXIT");
-        btnExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExitActionPerformed(evt);
-            }
-        });
+        txtAlamat.setColumns(20);
+        txtAlamat.setRows(5);
+        jScrollPane2.setViewportView(txtAlamat);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -251,19 +222,9 @@ public class MasterDataGuru extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel8)
                     .addComponent(jLabel9)
-                    .addComponent(jLabel10)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnSave)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnEdit)))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel10))
+                .addGap(60, 60, 60)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtDelete)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnClear)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnExit))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(rjk1)
                         .addGap(18, 18, 18)
@@ -275,8 +236,8 @@ public class MasterDataGuru extends javax.swing.JFrame {
                         .addComponent(txtTempatLahir, javax.swing.GroupLayout.Alignment.LEADING))
                     .addComponent(txtMataPelajaran, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNoHp, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -315,21 +276,14 @@ public class MasterDataGuru extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(txtNoHp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
-                    .addComponent(txtAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDelete)
-                    .addComponent(btnClear)
-                    .addComponent(btnSave)
-                    .addComponent(btnEdit)
-                    .addComponent(btnExit))
-                .addContainerGap(78, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 91, -1, 480));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 91, -1, 500));
 
         tabelguru.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -350,6 +304,46 @@ public class MasterDataGuru extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tabelguru);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, 640, 123));
+
+        btnSave.setText("SAVE");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 270, -1, -1));
+
+        btnEdit.setText("EDIT");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 270, -1, -1));
+
+        txtDelete.setText("DELETE");
+        txtDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDeleteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 270, -1, -1));
+
+        btnClear.setText("CLEAR");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 270, -1, -1));
+
+        btnExit.setText("EXIT");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 270, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -539,13 +533,14 @@ public class MasterDataGuru extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable3;
     private javax.swing.JPanel panelHeader;
     private javax.swing.JRadioButton rjk1;
     private javax.swing.JRadioButton rjk2;
     private javax.swing.JTable tabelguru;
-    private javax.swing.JTextField txtAlamat;
+    private javax.swing.JTextArea txtAlamat;
     private javax.swing.JButton txtDelete;
     private javax.swing.JTextField txtKodeGuru;
     private javax.swing.JTextField txtMataPelajaran;
