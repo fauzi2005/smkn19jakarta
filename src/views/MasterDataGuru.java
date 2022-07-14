@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -55,6 +56,26 @@ public class MasterDataGuru extends javax.swing.JFrame {
         txtNoHp.setText("");
         txtAlamat.setText("");
       
+    }
+    
+    String Tgl_lahir;
+    public void tanggal(){
+        if (date.getDate() !=null){
+            String pattern = "yyyy-MM-dd";
+            SimpleDateFormat format = new SimpleDateFormat(pattern);
+            Tgl_lahir = String.valueOf(format.format(date.getDate()));
+        }
+    }
+    
+    public void tanggal_lahir() {
+        try {
+            String sql = "Select * from tb_guru where kode_guru='"+txtKodeGuru.getText()+"'";
+            java.sql.Statement stat = conn.createStatement();
+            ResultSet hasil = stat.executeQuery(sql);
+            while (hasil.next()){
+                date.setDate(hasil.getDate("tanggal_lahir_guru"));
+            }
+        }catch (SQLException ex){}
     }
     
     protected void datatable(){
@@ -458,6 +479,7 @@ public class MasterDataGuru extends javax.swing.JFrame {
         txtNip.setText(b);
         txtNamaGuru.setText(c);
         txtTempatLahir.setText(d);
+        tanggal_lahir();
         
         if(f.equals("LAKI-LAKI")) {rjk1.setSelected(true); rjk2.setSelected(false);}
         else {rjk1.setSelected(false); rjk2.setSelected(true);}

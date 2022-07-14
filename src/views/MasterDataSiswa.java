@@ -57,6 +57,26 @@ public class MasterDataSiswa extends javax.swing.JFrame {
         
         tcari.setText("");
     }
+    
+    String Tgl_lahir;
+    public void tanggal(){
+        if (date_siswa.getDate() !=null){
+            String pattern = "yyyy-MM-dd";
+            SimpleDateFormat format = new SimpleDateFormat(pattern);
+            Tgl_lahir = String.valueOf(format.format(date_siswa.getDate()));
+        }
+    }
+    
+    public void tanggal_lahir() {
+        try {
+            String sql = "Select * from tabelsiswa where nis='"+tnis.getText()+"'";
+            java.sql.Statement stat = conn.createStatement();
+            ResultSet hasil = stat.executeQuery(sql);
+            while (hasil.next()){
+                date_siswa.setDate(hasil.getDate("tanggal_lahir_siswa"));
+            }
+        }catch (SQLException ex){}
+    }
         
     protected void datatable(){
     Object [] Baris = {"NIS","NISN","NAMA","TEMPAT LAHIR","TANGGAL LAHIR","ALAMAT","KELAMIN","AGAMA","JURUSAN","KELAS","TLP","EMAIL"};
@@ -489,6 +509,7 @@ public class MasterDataSiswa extends javax.swing.JFrame {
         tnisn.setText(b);
         tnama.setText(c);
         ttempat.setText(d);
+        tanggal_lahir();
         talm.setText(f);
         
         if(g.equals("Laki-Laki")) {rjk1.setSelected(true); rjk2.setSelected(false);}

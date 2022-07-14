@@ -55,6 +55,26 @@ public class MasterDataTataUsaha extends javax.swing.JFrame {
         tsearch.setText("");
     }
     
+    String Tgl_lahir;
+    public void tanggal(){
+        if (tanggallahir.getDate() !=null){
+            String pattern = "yyyy-MM-dd";
+            SimpleDateFormat format = new SimpleDateFormat(pattern);
+            Tgl_lahir = String.valueOf(format.format(tanggallahir.getDate()));
+        }
+    }
+    
+    public void tanggal_lahir() {
+        try {
+            String sql = "Select * from tabel_tu where id_tu='"+tid.getText()+"'";
+            java.sql.Statement stat = conn.createStatement();
+            ResultSet hasil = stat.executeQuery(sql);
+            while (hasil.next()){
+                tanggallahir.setDate(hasil.getDate("tanggal_lahir_tu"));
+            }
+        }catch (SQLException ex){}
+    }
+    
     protected void datatable(){
     Object [] Baris = {"ID","NAMA","GENDER","NIP","TEMPAT LAHIR","TANGGAL LAHIR","GOLDAR","JABATAN","JURUSAN","TAHUN MASUK","ALAMAT","TELP"};
     tabmode = new DefaultTableModel(null, Baris);
@@ -544,7 +564,7 @@ public class MasterDataTataUsaha extends javax.swing.JFrame {
         
         tnip.setText(d);
         ttempatlahir.setText(e);
-        
+        tanggal_lahir();
         tgolongandarah.setText(g);
         tjabatan.setText(h);
         cjurusan.setSelectedItem(i);

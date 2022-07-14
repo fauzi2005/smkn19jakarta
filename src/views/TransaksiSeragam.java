@@ -128,7 +128,6 @@ public class TransaksiSeragam extends javax.swing.JFrame {
         tcari = new javax.swing.JTextField();
         bbersih = new javax.swing.JButton();
         bhapus = new javax.swing.JButton();
-        bubah = new javax.swing.JButton();
         bsimpan = new javax.swing.JButton();
         bkeluar = new javax.swing.JButton();
 
@@ -179,7 +178,7 @@ public class TransaksiSeragam extends javax.swing.JFrame {
             }
         });
 
-        cjenis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih", "A", "B", "C", "D" }));
+        cjenis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih", "Seragam Putih", "Seragam Pramuka", "Seragam Batik", "Seragam Muslim" }));
         cjenis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cjenisActionPerformed(evt);
@@ -381,13 +380,6 @@ public class TransaksiSeragam extends javax.swing.JFrame {
             }
         });
 
-        bubah.setText("UBAH");
-        bubah.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bubahActionPerformed(evt);
-            }
-        });
-
         bsimpan.setText("SIMPAN");
         bsimpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -421,8 +413,6 @@ public class TransaksiSeragam extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(bsimpan)
                                 .addGap(18, 18, 18)
-                                .addComponent(bubah)
-                                .addGap(18, 18, 18)
                                 .addComponent(bhapus)
                                 .addGap(18, 18, 18)
                                 .addComponent(bbersih)
@@ -443,7 +433,6 @@ public class TransaksiSeragam extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bbersih)
                     .addComponent(bhapus)
-                    .addComponent(bubah)
                     .addComponent(bsimpan)
                     .addComponent(bkeluar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -519,30 +508,6 @@ public class TransaksiSeragam extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Data Gagal Disimpan"+e);
         }
     }//GEN-LAST:event_bsimpanActionPerformed
-
-    private void bubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bubahActionPerformed
-        // TODO add your handling code here:
-        try{
-            String sql = "UPDATE transaksi_pembayaran_seragam SET nama_tu=?, nama_siswa=?, uas=?, kelas=?, jurusan=?, ukuran=?, harga=? WHERE nis_siswa=?";
-            PreparedStatement stat = conn.prepareStatement(sql);
-
-            stat.setString(1, nama_pengurus.getText());
-            stat.setString(2, nis_siswa.getText());
-            stat.setString(3, nama_siswa.getText());
-            stat.setString(4, jurusan.getText());
-            stat.setString(5, cjenis.getSelectedItem().toString());
-            stat.setString(6, cukuran.getSelectedItem().toString());
-            stat.setString(7, harga.getText());
-            
-            stat.executeUpdate();
-            JOptionPane.showMessageDialog(null,"Data Berhasil diubah");
-            kosong();
-            id_tu.requestFocus();
-            datatable();
-        } catch (SQLException e){
-            JOptionPane.showMessageDialog(null, "Data Gagal Diubah"+e);
-        }
-    }//GEN-LAST:event_bubahActionPerformed
 
     private void tabelseragamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelseragamMouseClicked
         // TODO add your handling code here:
@@ -623,13 +588,13 @@ public class TransaksiSeragam extends javax.swing.JFrame {
         double harga;
         jenis = String.valueOf(cjenis.getSelectedItem());
         
-        if (jenis.equals ("A")) {
+        if (jenis.equals ("Seragam Putih")) {
             harga = 100000;
-        }else if (jenis.equals ("B")){
+        }else if (jenis.equals ("Seragam Pramuka")){
             harga = 75000;
-        }else if (jenis.equals ("C")){
+        }else if (jenis.equals ("Seragam Batik")){
             harga = 85000;
-        }else if (jenis.equals ("D")){
+        }else if (jenis.equals ("Seragam Muslim")){
             harga = 50000;
         }else {
             harga = 0;
@@ -717,7 +682,6 @@ public class TransaksiSeragam extends javax.swing.JFrame {
     private javax.swing.JButton bhitung;
     private javax.swing.JButton bkeluar;
     private javax.swing.JButton bsimpan;
-    private javax.swing.JButton bubah;
     private javax.swing.JButton cari_id_tu;
     private javax.swing.JButton cari_nis_siswa;
     private javax.swing.JComboBox<String> cjenis;
