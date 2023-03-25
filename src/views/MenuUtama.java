@@ -1012,7 +1012,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void btnGuruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuruActionPerformed
         panelMasterData.setVisible(false);
-        new MasterDataGuru(this, rootPaneCheckingEnabled).show();
+        new NewMasterDataGuru(this, rootPaneCheckingEnabled).show();
     }//GEN-LAST:event_btnGuruActionPerformed
 
     private void btnInputNilaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInputNilaiActionPerformed

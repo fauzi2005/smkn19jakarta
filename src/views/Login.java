@@ -272,7 +272,7 @@ public class Login extends javax.swing.JFrame {
         try {
             txtUsername.requestFocus();
             java.sql.Statement stat = conn.createStatement();
-            ResultSet result=stat.executeQuery ("SELECT * FROM users WHERE "
+            ResultSet result=stat.executeQuery ("SELECT * FROM user WHERE "
                 + "username='" +txtUsername.getText()+"'");
             if (result.next()) {
                 if (txtPassword.getText().equals(result.getString("password"))){
