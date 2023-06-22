@@ -842,7 +842,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void btnTataUsahaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTataUsahaActionPerformed
         panelMasterData.setVisible(false);
-        new MasterDataTataUsaha(this, rootPaneCheckingEnabled).show();
+        new NewMasterDataTataUsaha(this, rootPaneCheckingEnabled).show();
     }//GEN-LAST:event_btnTataUsahaActionPerformed
 
     private void panelUtamaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelUtamaMouseClicked
@@ -1007,7 +1007,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void btnSiswaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiswaActionPerformed
         panelMasterData.setVisible(false);
-        new MasterDataSiswa(this, rootPaneCheckingEnabled).show();
+        new NewMasterDataSiswa(this, rootPaneCheckingEnabled).show();
     }//GEN-LAST:event_btnSiswaActionPerformed
 
     private void btnGuruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuruActionPerformed
@@ -1017,7 +1017,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void btnInputNilaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInputNilaiActionPerformed
         panelTransaksi.setVisible(false);
-        new TransaksiInputNilai(this, rootPaneCheckingEnabled).show();
+        new NewInputDataAlternatif (this, rootPaneCheckingEnabled).show();
     }//GEN-LAST:event_btnInputNilaiActionPerformed
 
     private void btnPembayaranSeragamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPembayaranSeragamActionPerformed
@@ -1151,7 +1151,7 @@ public class MenuUtama extends javax.swing.JFrame {
     private void btnKelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKelasActionPerformed
         // TODO add your handling code here:
         panelMasterData.setVisible(false);
-        new MasterDataKelas(this, rootPaneCheckingEnabled).show();
+        new NewDataKelas(this, rootPaneCheckingEnabled).show();
     }//GEN-LAST:event_btnKelasActionPerformed
 
     private void btnLapSeragamMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLapSeragamMouseEntered

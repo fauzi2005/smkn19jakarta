@@ -57,7 +57,7 @@ public class NewMasterDataGuru extends javax.swing.JFrame {
         txtNamaGuru.setText("");
         txtTempatLahir.setText("");
         date.setDate(null);
-        rjk1.setSelected(true);
+        rjk1.setSelected(false);
         txtMataPelajaran.setText("");
         txtNoHp.setText("");
         txtAlamat.setText("");
@@ -316,6 +316,11 @@ public class NewMasterDataGuru extends javax.swing.JFrame {
                 txtNoHpActionPerformed(evt);
             }
         });
+        txtNoHp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNoHpKeyTyped(evt);
+            }
+        });
 
         txtMataPelajaran.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -327,6 +332,11 @@ public class NewMasterDataGuru extends javax.swing.JFrame {
         });
 
         txtNip.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtNip.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNipKeyTyped(evt);
+            }
+        });
 
         date.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -388,6 +398,8 @@ public class NewMasterDataGuru extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        txtCari.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         btnCari.setBackground(new java.awt.Color(204, 204, 204));
         btnCari.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -877,6 +889,22 @@ public class NewMasterDataGuru extends javax.swing.JFrame {
         kosong();
         datatable();
     }//GEN-LAST:event_btnClearActionPerformed
+
+    private void txtNipKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNipKeyTyped
+        // TODO add your handling code here:
+        char nomoraja = evt.getKeyChar();
+        if (!(Character.isDigit(nomoraja) || nomoraja == KeyEvent.VK_BACK_SPACE || nomoraja == KeyEvent.VK_DELETE)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNipKeyTyped
+
+    private void txtNoHpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNoHpKeyTyped
+        // TODO add your handling code here:
+        char nomoraja = evt.getKeyChar();
+        if (!(Character.isDigit(nomoraja) || nomoraja == KeyEvent.VK_BACK_SPACE || nomoraja == KeyEvent.VK_DELETE)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNoHpKeyTyped
 
     /**
      * @param args the command line arguments

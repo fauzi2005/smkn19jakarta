@@ -210,6 +210,12 @@ public class MasterDataTataUsaha extends javax.swing.JFrame {
         talamat.setRows(5);
         jScrollPane1.setViewportView(talamat);
 
+        tnohp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tnohpActionPerformed(evt);
+            }
+        });
+
         bsave.setText("SAVE");
         bsave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -262,6 +268,12 @@ public class MasterDataTataUsaha extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(tabeltu);
+
+        tsearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tsearchActionPerformed(evt);
+            }
+        });
 
         bsearch.setText("Search");
         bsearch.addActionListener(new java.awt.event.ActionListener() {
@@ -572,6 +584,14 @@ public class MasterDataTataUsaha extends javax.swing.JFrame {
         talamat.setText(k);
         tnohp.setText(l);
     }//GEN-LAST:event_tabeltuMouseClicked
+
+    private void tnohpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tnohpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tnohpActionPerformed
+
+    private void tsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tsearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tsearchActionPerformed
 
     /**
      * @param args the command line arguments

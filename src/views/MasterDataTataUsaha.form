@@ -358,6 +358,9 @@
               </SubComponents>
             </Container>
             <Component class="javax.swing.JTextField" name="tnohp">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tnohpActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="bsave">
               <Properties>
@@ -432,6 +435,9 @@
               </SubComponents>
             </Container>
             <Component class="javax.swing.JTextField" name="tsearch">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tsearchActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="bsearch">
               <Properties>
