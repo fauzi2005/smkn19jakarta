@@ -88,18 +88,12 @@ public class MenuUtama extends javax.swing.JFrame {
         btnTataUsaha = new javax.swing.JButton();
         btnGuru = new javax.swing.JButton();
         btnSiswa = new javax.swing.JButton();
-        btnJurusan = new javax.swing.JButton();
-        btnMapel = new javax.swing.JButton();
-        btnKelas = new javax.swing.JButton();
         panelTransaksi = new javax.swing.JPanel();
         btnInputNilai = new javax.swing.JButton();
-        btnPembayaranSeragam = new javax.swing.JButton();
         panelLaporan = new javax.swing.JPanel();
         btnLapDataSiswa = new javax.swing.JButton();
         btnLapDataGuru = new javax.swing.JButton();
         btnLapTU = new javax.swing.JButton();
-        btnLapNilai = new javax.swing.JButton();
-        btnLapSeragam = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -136,7 +130,7 @@ public class MenuUtama extends javax.swing.JFrame {
         labelNama.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         labelNama.setForeground(new java.awt.Color(255, 255, 255));
         labelNama.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelNama.setText("Aplikasi Akademik SMK Negeri 19 Jakarta");
+        labelNama.setText("Sistem Aplikasi Akademik Dan Penentuan Siswa Terbaik SMKN 19 Jakarta");
         labelNama.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 labelNamaMouseDragged(evt);
@@ -310,7 +304,7 @@ public class MenuUtama extends javax.swing.JFrame {
         btnAbout.setBackground(new java.awt.Color(0, 153, 153));
         btnAbout.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnAbout.setForeground(new java.awt.Color(255, 255, 255));
-        btnAbout.setText("  About");
+        btnAbout.setText("  Tentang");
         btnAbout.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnAbout.setContentAreaFilled(false);
         btnAbout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -365,7 +359,7 @@ public class MenuUtama extends javax.swing.JFrame {
                 .addComponent(btnLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnAbout, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(27, 27, 27)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -447,78 +441,6 @@ public class MenuUtama extends javax.swing.JFrame {
             }
         });
 
-        btnJurusan.setBackground(new java.awt.Color(0, 153, 153));
-        btnJurusan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnJurusan.setForeground(new java.awt.Color(255, 255, 255));
-        btnJurusan.setText("  > Data Jurusan");
-        btnJurusan.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btnJurusan.setContentAreaFilled(false);
-        btnJurusan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnJurusan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnJurusan.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnJurusan.setOpaque(true);
-        btnJurusan.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnJurusanMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnJurusanMouseExited(evt);
-            }
-        });
-        btnJurusan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnJurusanActionPerformed(evt);
-            }
-        });
-
-        btnMapel.setBackground(new java.awt.Color(0, 153, 153));
-        btnMapel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnMapel.setForeground(new java.awt.Color(255, 255, 255));
-        btnMapel.setText("  > Data Mata Pelajaran");
-        btnMapel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btnMapel.setContentAreaFilled(false);
-        btnMapel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnMapel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnMapel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnMapel.setOpaque(true);
-        btnMapel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnMapelMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnMapelMouseExited(evt);
-            }
-        });
-        btnMapel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMapelActionPerformed(evt);
-            }
-        });
-
-        btnKelas.setBackground(new java.awt.Color(0, 153, 153));
-        btnKelas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnKelas.setForeground(new java.awt.Color(255, 255, 255));
-        btnKelas.setText("  > Data Kelas");
-        btnKelas.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btnKelas.setContentAreaFilled(false);
-        btnKelas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnKelas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnKelas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnKelas.setOpaque(true);
-        btnKelas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnKelasMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnKelasMouseExited(evt);
-            }
-        });
-        btnKelas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnKelasActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelMasterDataLayout = new javax.swing.GroupLayout(panelMasterData);
         panelMasterData.setLayout(panelMasterDataLayout);
         panelMasterDataLayout.setHorizontalGroup(
@@ -526,25 +448,16 @@ public class MenuUtama extends javax.swing.JFrame {
             .addComponent(btnTataUsaha, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
             .addComponent(btnGuru, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
             .addComponent(btnSiswa, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-            .addComponent(btnJurusan, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-            .addComponent(btnMapel, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-            .addComponent(btnKelas, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
         );
         panelMasterDataLayout.setVerticalGroup(
             panelMasterDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMasterDataLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnTataUsaha, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnGuru, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(btnSiswa, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnJurusan, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnMapel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnKelas, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnSiswa, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         panelTransaksi.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -573,43 +486,17 @@ public class MenuUtama extends javax.swing.JFrame {
             }
         });
 
-        btnPembayaranSeragam.setBackground(new java.awt.Color(0, 153, 153));
-        btnPembayaranSeragam.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnPembayaranSeragam.setForeground(new java.awt.Color(255, 255, 255));
-        btnPembayaranSeragam.setText("  > Pembelian Seragam Sekolah");
-        btnPembayaranSeragam.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btnPembayaranSeragam.setContentAreaFilled(false);
-        btnPembayaranSeragam.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnPembayaranSeragam.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnPembayaranSeragam.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnPembayaranSeragam.setOpaque(true);
-        btnPembayaranSeragam.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnPembayaranSeragamMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnPembayaranSeragamMouseExited(evt);
-            }
-        });
-        btnPembayaranSeragam.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPembayaranSeragamActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelTransaksiLayout = new javax.swing.GroupLayout(panelTransaksi);
         panelTransaksi.setLayout(panelTransaksiLayout);
         panelTransaksiLayout.setHorizontalGroup(
             panelTransaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnPembayaranSeragam, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
             .addComponent(btnInputNilai, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
         );
         panelTransaksiLayout.setVerticalGroup(
             panelTransaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelTransaksiLayout.createSequentialGroup()
-                .addComponent(btnInputNilai, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(btnPembayaranSeragam, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTransaksiLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnInputNilai, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         panelLaporan.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -686,54 +573,6 @@ public class MenuUtama extends javax.swing.JFrame {
             }
         });
 
-        btnLapNilai.setBackground(new java.awt.Color(0, 153, 153));
-        btnLapNilai.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnLapNilai.setForeground(new java.awt.Color(255, 255, 255));
-        btnLapNilai.setText("  > Laporan Nilai Siswa");
-        btnLapNilai.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btnLapNilai.setContentAreaFilled(false);
-        btnLapNilai.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnLapNilai.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnLapNilai.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnLapNilai.setOpaque(true);
-        btnLapNilai.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnLapNilaiMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnLapNilaiMouseExited(evt);
-            }
-        });
-        btnLapNilai.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLapNilaiActionPerformed(evt);
-            }
-        });
-
-        btnLapSeragam.setBackground(new java.awt.Color(0, 153, 153));
-        btnLapSeragam.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnLapSeragam.setForeground(new java.awt.Color(255, 255, 255));
-        btnLapSeragam.setText("  > Laporan Seragam Sekolah");
-        btnLapSeragam.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btnLapSeragam.setContentAreaFilled(false);
-        btnLapSeragam.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnLapSeragam.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnLapSeragam.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnLapSeragam.setOpaque(true);
-        btnLapSeragam.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnLapSeragamMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnLapSeragamMouseExited(evt);
-            }
-        });
-        btnLapSeragam.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLapSeragamActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelLaporanLayout = new javax.swing.GroupLayout(panelLaporan);
         panelLaporan.setLayout(panelLaporanLayout);
         panelLaporanLayout.setHorizontalGroup(
@@ -741,8 +580,6 @@ public class MenuUtama extends javax.swing.JFrame {
             .addComponent(btnLapDataGuru, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
             .addComponent(btnLapDataSiswa, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
             .addComponent(btnLapTU, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-            .addComponent(btnLapNilai, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-            .addComponent(btnLapSeragam, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
         );
         panelLaporanLayout.setVerticalGroup(
             panelLaporanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -751,11 +588,7 @@ public class MenuUtama extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(btnLapDataGuru, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(btnLapTU, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(btnLapNilai, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(btnLapSeragam, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnLapTU, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout panelUtamaLayout = new javax.swing.GroupLayout(panelUtama);
@@ -779,11 +612,11 @@ public class MenuUtama extends javax.swing.JFrame {
                     .addComponent(panelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelUtamaLayout.createSequentialGroup()
                         .addComponent(panelMasterData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
+                        .addGap(42, 42, 42)
                         .addComponent(panelTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
-                        .addComponent(panelLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 93, Short.MAX_VALUE))))
+                        .addGap(41, 41, 41)
+                        .addComponent(panelLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -911,16 +744,6 @@ public class MenuUtama extends javax.swing.JFrame {
         btnSiswa.setBackground(new Color(0,153,153));
     }//GEN-LAST:event_btnSiswaMouseExited
 
-    private void btnJurusanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnJurusanMouseEntered
-        btnJurusan.setForeground(Color.black);
-        btnJurusan.setBackground(new Color(0,0,255));
-    }//GEN-LAST:event_btnJurusanMouseEntered
-
-    private void btnJurusanMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnJurusanMouseExited
-        btnJurusan.setForeground(Color.white);
-        btnJurusan.setBackground(new Color(0,153,153));
-    }//GEN-LAST:event_btnJurusanMouseExited
-
     private void btnInputNilaiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInputNilaiMouseEntered
         btnInputNilai.setForeground(Color.black);
         btnInputNilai.setBackground(new Color(0,0,255));
@@ -930,16 +753,6 @@ public class MenuUtama extends javax.swing.JFrame {
         btnInputNilai.setForeground(Color.white);
         btnInputNilai.setBackground(new Color(0,153,153));
     }//GEN-LAST:event_btnInputNilaiMouseExited
-
-    private void btnPembayaranSeragamMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPembayaranSeragamMouseEntered
-        btnPembayaranSeragam.setForeground(Color.black);
-        btnPembayaranSeragam.setBackground(new Color(0,0,255));
-    }//GEN-LAST:event_btnPembayaranSeragamMouseEntered
-
-    private void btnPembayaranSeragamMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPembayaranSeragamMouseExited
-        btnPembayaranSeragam.setForeground(Color.white);
-        btnPembayaranSeragam.setBackground(new Color(0,153,153));
-    }//GEN-LAST:event_btnPembayaranSeragamMouseExited
 
     private void btnLapDataSiswaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLapDataSiswaMouseEntered
         btnLapDataSiswa.setForeground(Color.black);
@@ -970,11 +783,6 @@ public class MenuUtama extends javax.swing.JFrame {
         btnLapTU.setForeground(Color.white);
         btnLapTU.setBackground(new Color(0,153,153));
     }//GEN-LAST:event_btnLapTUMouseExited
-
-    private void btnJurusanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJurusanActionPerformed
-        panelMasterData.setVisible(false);
-        new MasterDataJurusan(this, rootPaneCheckingEnabled).show();
-    }//GEN-LAST:event_btnJurusanActionPerformed
 
     private void btnMaximizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMaximizeMouseClicked
         if(maximixed){
@@ -1020,16 +828,11 @@ public class MenuUtama extends javax.swing.JFrame {
         new NewInputDataAlternatif (this, rootPaneCheckingEnabled).show();
     }//GEN-LAST:event_btnInputNilaiActionPerformed
 
-    private void btnPembayaranSeragamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPembayaranSeragamActionPerformed
-        panelTransaksi.setVisible(false);
-        new TransaksiSeragam(this, rootPaneCheckingEnabled).show();
-    }//GEN-LAST:event_btnPembayaranSeragamActionPerformed
-
     private void btnLapDataSiswaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLapDataSiswaActionPerformed
         panelLaporan.setVisible(false);
 //        new laporanBarangMasuk(this, rootPaneCheckingEnabled).show();
         try {
-            String namaFile = "src/Report/ReportDataSiswa.jasper";
+            String namaFile = "src/Report/reportsiswa1.jasper";
             Connection conn = new koneksi().connect();
             HashMap parameter = new HashMap();
             File report_file = new File(namaFile);
@@ -1046,7 +849,7 @@ public class MenuUtama extends javax.swing.JFrame {
         panelLaporan.setVisible(false);
 //        new laporanBarangKeluar(this, rootPaneCheckingEnabled).show();
         try {
-            String namaFile = "src/Report/ReportDataGuru.jasper";
+            String namaFile = "src/Report/reportguru.jasper";
             Connection conn = new koneksi().connect();
             HashMap parameter = new HashMap();
             File report_file = new File(namaFile);
@@ -1064,7 +867,7 @@ public class MenuUtama extends javax.swing.JFrame {
         panelLaporan.setVisible(false);
 //        new laporanStokBarang(this, rootPaneCheckingEnabled).show();
         try {
-            String namaFile = "src/Report/ReportDataTU.jasper";
+            String namaFile = "src/Report/reporttatausaha.jasper";
             Connection conn = new koneksi().connect();
             HashMap parameter = new HashMap();
             File report_file = new File(namaFile);
@@ -1090,97 +893,6 @@ public class MenuUtama extends javax.swing.JFrame {
     private void btnAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAboutActionPerformed
 //        new about(this, rootPaneCheckingEnabled).show();
     }//GEN-LAST:event_btnAboutActionPerformed
-
-    private void btnLapNilaiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLapNilaiMouseEntered
-        btnLapNilai.setForeground(Color.black);
-        btnLapNilai.setBackground(new Color(0,0,255));
-    }//GEN-LAST:event_btnLapNilaiMouseEntered
-
-    private void btnLapNilaiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLapNilaiMouseExited
-        btnLapNilai.setForeground(Color.white);
-        btnLapNilai.setBackground(new Color(0,153,153));
-    }//GEN-LAST:event_btnLapNilaiMouseExited
-
-    private void btnLapNilaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLapNilaiActionPerformed
-        panelLaporan.setVisible(false);
-//        new laporanDataSupplier(this, rootPaneCheckingEnabled).show();
-        try {
-            String namaFile = "src/Report/ReportNilaiSiswa.jasper";
-            Connection conn = new koneksi().connect();
-            HashMap parameter = new HashMap();
-            File report_file = new File(namaFile);
-            JasperReport jasperReport = (JasperReport) JRLoader.loadObject(report_file.getPath());
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameter, conn);
-            JasperViewer.viewReport(jasperPrint, false); //coba
-            JasperViewer.setDefaultLookAndFeelDecorated(true);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,e.getMessage());
-        }
-    }//GEN-LAST:event_btnLapNilaiActionPerformed
-
-    private void btnMapelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMapelMouseEntered
-        // TODO add your handling code here:
-        btnMapel.setForeground(Color.black);
-        btnMapel.setBackground(new Color(0,0,255));
-    }//GEN-LAST:event_btnMapelMouseEntered
-
-    private void btnMapelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMapelMouseExited
-        // TODO add your handling code here:
-        btnMapel.setForeground(Color.white);
-        btnMapel.setBackground(new Color(0,153,153));
-    }//GEN-LAST:event_btnMapelMouseExited
-
-    private void btnMapelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMapelActionPerformed
-        // TODO add your handling code here:
-        panelMasterData.setVisible(false);
-        new MasterDataMataPelajaran(this, rootPaneCheckingEnabled).show();
-    }//GEN-LAST:event_btnMapelActionPerformed
-
-    private void btnKelasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnKelasMouseEntered
-        // TODO add your handling code here:
-        btnKelas.setForeground(Color.black);
-        btnKelas.setBackground(new Color(0,0,255));
-    }//GEN-LAST:event_btnKelasMouseEntered
-
-    private void btnKelasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnKelasMouseExited
-        // TODO add your handling code here:
-        btnKelas.setForeground(Color.white);
-        btnKelas.setBackground(new Color(0,153,153));
-    }//GEN-LAST:event_btnKelasMouseExited
-
-    private void btnKelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKelasActionPerformed
-        // TODO add your handling code here:
-        panelMasterData.setVisible(false);
-        new NewDataKelas(this, rootPaneCheckingEnabled).show();
-    }//GEN-LAST:event_btnKelasActionPerformed
-
-    private void btnLapSeragamMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLapSeragamMouseEntered
-        // TODO add your handling code here:
-        btnLapSeragam.setForeground(Color.black);
-        btnLapSeragam.setBackground(new Color(0,0,255));
-    }//GEN-LAST:event_btnLapSeragamMouseEntered
-
-    private void btnLapSeragamMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLapSeragamMouseExited
-        // TODO add your handling code here:
-        btnLapSeragam.setForeground(Color.white);
-        btnLapSeragam.setBackground(new Color(0,153,153));
-    }//GEN-LAST:event_btnLapSeragamMouseExited
-
-    private void btnLapSeragamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLapSeragamActionPerformed
-        // TODO add your handling code here:
-        try {
-            String namaFile = "src/Report/ReportPembayaranSeragam.jasper";
-            Connection conn = new koneksi().connect();
-            HashMap parameter = new HashMap();
-            File report_file = new File(namaFile);
-            JasperReport jasperReport = (JasperReport) JRLoader.loadObject(report_file.getPath());
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameter, conn);
-            JasperViewer.viewReport(jasperPrint, false); //coba
-            JasperViewer.setDefaultLookAndFeelDecorated(true);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,e.getMessage());
-        }
-    }//GEN-LAST:event_btnLapSeragamActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1225,19 +937,13 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnGuru;
     private javax.swing.JButton btnInputNilai;
-    private javax.swing.JButton btnJurusan;
-    private javax.swing.JButton btnKelas;
     private javax.swing.JButton btnLapDataGuru;
     private javax.swing.JButton btnLapDataSiswa;
-    private javax.swing.JButton btnLapNilai;
-    private javax.swing.JButton btnLapSeragam;
     private javax.swing.JButton btnLapTU;
     private javax.swing.JButton btnLaporan;
-    private javax.swing.JButton btnMapel;
     private javax.swing.JButton btnMasterData;
     private javax.swing.JButton btnMaximize;
     private javax.swing.JButton btnMinimize;
-    private javax.swing.JButton btnPembayaranSeragam;
     private javax.swing.JButton btnSiswa;
     private javax.swing.JButton btnTataUsaha;
     private javax.swing.JButton btnTransaksi;

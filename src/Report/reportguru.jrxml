@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="af065ab1-b0b7-4b15-8ffd-5e8da865b362">
+	<property name="ireport.zoom" value="0.9090909090909093"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[select * from tb_guru]]>
+	</queryString>
+	<field name="kode_guru" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nip_guru" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nama_guru" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tempat_lahir_guru" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tanggal_lahir_guru" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jenis_kelamin_guru" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="mata_pelajaran_guru" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="no_hp_guru" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="alamat_guru" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="146" splitType="Stretch">
+			<image>
+				<reportElement uuid="03cbf718-2edc-4f47-aaa3-4359b51cb0ae" x="59" y="16" width="85" height="113"/>
+				<imageExpression><![CDATA["C:\\Users\\lenov\\Documents\\NetBeansProjects\\smkn19jakarta\\src\\Report\\LOGO_SMKN_19_JAKARTA.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="784fa6d2-353d-4582-9612-f833dc0ab477" x="168" y="108" width="571" height="21"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[JAKARTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="37aa3019-a4d9-4354-acdb-84b73ac18cb0" x="168" y="16" width="571" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[PEMERINTAH PROVINSI DAERAH KHUSUS IBUKOTA JAKARTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3875f7df-3f2d-44b3-891e-da3bded5372a" x="168" y="36" width="571" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[DINAS PENDIDIKAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d7bde8ec-d18d-4998-8baf-ab9e5e30a819" x="168" y="76" width="571" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Jalan Danau Limboto No. 11, Bendungan Hilir Jakarta Pusat 10210 ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d5d4b4e5-028c-469e-a796-e839d359ff43" x="168" y="91" width="571" height="17"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Telp. 021-573 4292 Fax. 021-573 4929, e-mail: admin@smkn19jakarta ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="34a6287d-6ebe-4af1-9209-a733ad5c82cf" x="644" y="129" width="95" height="14"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Kode POS 10210]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a1fa0e87-7b90-4ed3-b64c-a34cd7019d0e" x="168" y="56" width="571" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SEKOLAH MENENGAH KEJURUAN NEGERI 19]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="33d65b67-5231-49c3-9858-9636a0512c75" x="0" y="143" width="802" height="1"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="46" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="0b140a2b-55d1-405c-afd6-8a57fce53cd9" x="79" y="0" width="710" height="33"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA GURU SMKN 19 JAKARTA]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="781b7f6f-41fa-4114-bc8e-e6e6c970a072" x="0" y="0" width="89" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KODE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f466958a-6422-467d-af29-c8bc1aa4a10a" x="89" y="0" width="89" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NIP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="823e4c4a-f266-47de-8445-b2c1bfebe7e2" x="178" y="0" width="89" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NAMA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ad686408-bdb1-4862-abf1-fa7097b62adb" x="267" y="0" width="89" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TEMPAT LAHIR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c48b43fa-3194-4a28-818c-d7a9e83c3459" x="356" y="0" width="89" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TANGGAL LAHIR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6b39aa26-935f-4763-90cc-299660d15249" x="445" y="0" width="89" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KELAMIN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3652ed83-49c1-4461-8bd6-d63a0856e3ad" x="534" y="0" width="89" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MATA PELAJARAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="07300173-3348-46d1-8eba-16fe5fc5d1bc" x="623" y="0" width="89" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NO TELP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d43ea27f-bb6a-4687-833d-1a3835cdb425" x="712" y="0" width="89" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ALAMAT]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement uuid="3db0ffb4-b8a3-4f80-b18f-b5e5dfd3b28a" x="0" y="0" width="89" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kode_guru}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ec3f0daf-e771-46be-a8dc-c5a7c9c150cc" x="89" y="0" width="89" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nip_guru}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1d43a1dd-5941-4540-9143-8810a9dfdfd4" x="178" y="0" width="89" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama_guru}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8b428f2c-74e9-4564-b6a2-378b83c9a19e" x="267" y="0" width="89" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tempat_lahir_guru}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e43636bd-0abb-4208-81c0-46b7408f32b3" x="356" y="0" width="89" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("EEEEE dd MMMMM yyyy", new java.util.Locale("id", "ID")).format($F{tanggal_lahir_guru})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="72749249-91cb-40d5-9ae3-67f6100aaf32" x="445" y="0" width="89" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jenis_kelamin_guru}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9838814a-dd7c-46d1-9b24-934d4e7cf1d3" x="534" y="0" width="89" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mata_pelajaran_guru}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="bd8e4c63-2cfa-49a0-b9c6-7606da7e733b" x="623" y="0" width="89" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{no_hp_guru}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4733da29-3717-430d-a0a7-dd296494f8b2" x="712" y="0" width="89" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{alamat_guru}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="150" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="1cce5506-6913-4e3e-a484-a504cf782e25" x="644" y="116" width="126" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Plt. Kepala SMKN 19 Jakarta]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="cb04600e-4f25-40ce-bd3f-6bd31925067d" x="676" y="18" width="94" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement>
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("EEEEE dd MMMMM yyyy", new java.util.Locale("id", "ID")).format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="f65470a8-e867-4333-826b-3080f714838c" x="644" y="18" width="32" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Jakarta, ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2f9999bd-44e5-4a4f-be1a-e828c5c22a1a" x="644" y="38" width="126" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Kepala Sekolah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="788d8d3b-12c4-401c-85fe-f306e24e6482" x="644" y="96" width="126" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Dra. Murni Astuti, M.M.]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

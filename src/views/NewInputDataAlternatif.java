@@ -21,7 +21,12 @@ import connectionDB.koneksi;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import model.ModelAlternatifSAW;
 import static views.MenuUtama.maximixed;
 /**
  *
@@ -32,6 +37,8 @@ public class NewInputDataAlternatif extends javax.swing.JFrame {
     /**
      * Creates new form NewInputDataAlternatif
      */
+    private DecimalFormat nonDecimal = new DecimalFormat("#");
+    
     public NewInputDataAlternatif(java.awt.Frame parent, boolean modal) {
         initComponents();
         datatable1();
@@ -62,15 +69,16 @@ public class NewInputDataAlternatif extends javax.swing.JFrame {
     }
     
     protected void datatable1(){
-    Object [] Baris = {"NO","NIS","NAMA","NILAI RERATA","SIKAP","KEHADIRAN","ESTRAKULIKULER"};
+    Object [] Baris = {"NO","NIS","NAMA","NILAI RERATA","SIKAP","KEHADIRAN","EKSTRAKULIKULER"};
     tabmode = new DefaultTableModel(null, Baris);
     tabelalternatif1.setModel(tabmode);
     try {
     String sql = "Select * from tb_alternatif1";
         java.sql.Statement stat = conn.createStatement();
         ResultSet hasil = stat.executeQuery(sql);
+        int nos = 1;
         while (hasil.next()){
-            String a = hasil.getString("id");
+            String a = String.valueOf(nos);
             String b = hasil.getString("nis");
             String c = hasil.getString("nama");
             String d = hasil.getString("c1");
@@ -79,6 +87,8 @@ public class NewInputDataAlternatif extends javax.swing.JFrame {
             String g = hasil.getString("c4");
             String[] data={a,b,c,d,e,f,g};
             tabmode.addRow(data);
+            
+            nos++;
         }
     }catch (SQLException e){
         }
@@ -92,8 +102,9 @@ public class NewInputDataAlternatif extends javax.swing.JFrame {
     String sql = "Select * from tb_alternatif2";
         java.sql.Statement stat = conn.createStatement();
         ResultSet hasil = stat.executeQuery(sql);
+        int nos = 1;
         while (hasil.next()){
-            String a = hasil.getString("id");
+            String a = String.valueOf(nos);
             String b = hasil.getString("nis");
             String c = hasil.getString("nama");
             String d = hasil.getString("c1");
@@ -102,6 +113,8 @@ public class NewInputDataAlternatif extends javax.swing.JFrame {
             String g = hasil.getString("c4");
             String[] data={a,b,c,d,e,f,g};
             tabmode.addRow(data);
+            
+            nos++;
         }
     }catch (SQLException e){
         System.err.println(e.getMessage());
@@ -231,6 +244,9 @@ public class NewInputDataAlternatif extends javax.swing.JFrame {
             }
         });
         tnis.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tnisKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tnisKeyTyped(evt);
             }
@@ -572,7 +588,21 @@ public class NewInputDataAlternatif extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void tabelalternatif1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelalternatif1MouseClicked
-        
+        int bar = tabelalternatif1.getSelectedRow();
+        String a = tabmode.getValueAt (bar, 0).toString();
+        String b = tabmode.getValueAt (bar, 1).toString();
+        String c = tabmode.getValueAt (bar, 2).toString();
+        String d = tabmode.getValueAt (bar, 3).toString();
+        String e = tabmode.getValueAt (bar, 4).toString();
+        String f = tabmode.getValueAt (bar, 5).toString();
+        String g = tabmode.getValueAt (bar, 6).toString();
+                
+        tnis.setText(b);
+        tnamasiswa.setText(c);
+        c1.setText(nonDecimal.format(Double.parseDouble(d)*100));
+        c2.setText(nonDecimal.format(Double.parseDouble(e)*100));
+        c3.setText(nonDecimal.format(Double.parseDouble(f)*100));
+        c4.setText(nonDecimal.format(Double.parseDouble(g)*100));
     }//GEN-LAST:event_tabelalternatif1MouseClicked
 
     private void tnisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tnisActionPerformed
@@ -601,6 +631,10 @@ public class NewInputDataAlternatif extends javax.swing.JFrame {
 
     private void c1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_c1KeyTyped
         // TODO add your handling code here:
+        char nomoraja = evt.getKeyChar();
+        if (!(Character.isDigit(nomoraja) || nomoraja == KeyEvent.VK_BACK_SPACE || nomoraja == KeyEvent.VK_DELETE)){
+            evt.consume();
+        }
     }//GEN-LAST:event_c1KeyTyped
 
     private void c2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c2ActionPerformed
@@ -609,6 +643,10 @@ public class NewInputDataAlternatif extends javax.swing.JFrame {
 
     private void c2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_c2KeyTyped
         // TODO add your handling code here:
+        char nomoraja = evt.getKeyChar();
+        if (!(Character.isDigit(nomoraja) || nomoraja == KeyEvent.VK_BACK_SPACE || nomoraja == KeyEvent.VK_DELETE)){
+            evt.consume();
+        }
     }//GEN-LAST:event_c2KeyTyped
 
     private void c3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c3ActionPerformed
@@ -617,6 +655,10 @@ public class NewInputDataAlternatif extends javax.swing.JFrame {
 
     private void c3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_c3KeyTyped
         // TODO add your handling code here:
+        char nomoraja = evt.getKeyChar();
+        if (!(Character.isDigit(nomoraja) || nomoraja == KeyEvent.VK_BACK_SPACE || nomoraja == KeyEvent.VK_DELETE)){
+            evt.consume();
+        }
     }//GEN-LAST:event_c3KeyTyped
 
     private void c4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c4ActionPerformed
@@ -625,10 +667,28 @@ public class NewInputDataAlternatif extends javax.swing.JFrame {
 
     private void c4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_c4KeyTyped
         // TODO add your handling code here:
+        char nomoraja = evt.getKeyChar();
+        if (!(Character.isDigit(nomoraja) || nomoraja == KeyEvent.VK_BACK_SPACE || nomoraja == KeyEvent.VK_DELETE)){
+            evt.consume();
+        }
     }//GEN-LAST:event_c4KeyTyped
 
     private void tabelalternatif2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelalternatif2MouseClicked
         // TODO add your handling code here:
+        int bar = tabelalternatif2.getSelectedRow();
+        String a = tabmode.getValueAt (bar, 1).toString();
+        String b = tabmode.getValueAt (bar, 2).toString();
+        String c = tabmode.getValueAt (bar, 3).toString();
+        String d = tabmode.getValueAt (bar, 4).toString();
+        String e = tabmode.getValueAt (bar, 5).toString();
+        String f = tabmode.getValueAt (bar, 6).toString();
+        
+        tnis.setText(a);
+        tnamasiswa.setText(b);
+        c1.setText(c);
+        c2.setText(d);
+        c3.setText(e);
+        c4.setText(f);
     }//GEN-LAST:event_tabelalternatif2MouseClicked
 
     private void btnSaveMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseEntered
@@ -642,55 +702,63 @@ public class NewInputDataAlternatif extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSaveMouseExited
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        String sql1 = "insert into tb_alternatif1 values (?,?,?,?,?,?,?)";
-        try{
-            PreparedStatement stat = conn.prepareStatement(sql1);
-            stat.setString(1, null);
-            stat.setString(2, tnis.getText());
-            stat.setString(3, tnamasiswa.getText());
-            stat.setString(4, c1.getText());
-            stat.setString(5, c2.getText());           
-            stat.setString(6, c3.getText());
-            stat.setString(7, c4.getText());
+         try{
+            // Prepare the SQL query
+            String selectQuery = "SELECT nis FROM tb_alternatif1 WHERE nis = ?";
+            PreparedStatement selectStatement = conn.prepareStatement(selectQuery);
+            selectStatement.setString(1, tnis.getText());
+
+            // Execute the query
+            ResultSet resultSet = selectStatement.executeQuery();
+
+            // Check if a record with the id already exists
+            if (resultSet.next()) {
+                // Throw an error or handle the situation accordingly
+                JOptionPane.showMessageDialog(null, "NIS " +tnis.getText()+ " sudah ada.");
+                throw new RuntimeException("Record with id " + tnis.getText() + " already exists.");
+            } else {
+                // Proceed with the insert operation
+                String sql1 = "insert into tb_alternatif1 values (?,?,?,?,?,?,?)";
+                PreparedStatement stat = conn.prepareStatement(sql1);
+                stat.setString(1, null);
+                stat.setString(2, tnis.getText());
+                stat.setString(3, tnamasiswa.getText());
+                stat.setString(4, c1.getText());
+                stat.setString(5, c2.getText());           
+                stat.setString(6, c3.getText());
+                stat.setString(7, c4.getText());
+
+                stat.executeUpdate();
+                
+                String sql2 = "insert into tb_alternatif2 values (?,?,?,?,?,?,?)";
+                
+                double c1Double = Double.parseDouble(c1.getText()) / 100;
+                double c2Double = Double.parseDouble(c2.getText()) / 100;
+                double c3Double = Double.parseDouble(c3.getText()) / 100;
+                double c4Double = Double.parseDouble(c4.getText()) / 100;            
             
-            stat.executeUpdate();
+                PreparedStatement stats = conn.prepareStatement(sql2);
+                stats.setString(1, null);
+                stats.setString(2, tnis.getText());
+                stats.setString(3, tnamasiswa.getText());
+                stats.setString(4, String.valueOf(c1Double));
+                stats.setString(5, String.valueOf(c2Double));           
+                stats.setString(6, String.valueOf(c3Double));
+                stats.setString(7, String.valueOf(c4Double));
+
+                stats.executeUpdate();
+                
+                JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan");
+                kosong();
+                tnis.requestFocus();
+                datatable1();
+                datatable2();
+            }
             
-            tnis.requestFocus();
-            datatable1();
-        }catch (SQLException e){
-            JOptionPane.showMessageDialog(null, "Data Gagal Disimpan"+e);
-        }
-        
-        String sql2 = "insert into tb_alternatif2 values (?,?,?,?,?,?,?)";
-        try{
-            int cSatu = Integer.parseInt(c1.getText());
-            int cDua = Integer.parseInt(c2.getText());
-            int cTiga = Integer.parseInt(c3.getText());
-            int cEmpat = Integer.parseInt(c4.getText());
-            
-            double c1Double = Double.parseDouble(c1.getText()) / 100;
-            double c2Double = Double.parseDouble(c2.getText()) / 100;
-            double c3Double = Double.parseDouble(c3.getText()) / 100;
-            double c4Double = Double.parseDouble(c4.getText()) / 100;            
-            
-            PreparedStatement stat = conn.prepareStatement(sql2);
-            stat.setString(1, null);
-            stat.setString(2, tnis.getText());
-            stat.setString(3, tnamasiswa.getText());
-            stat.setString(4, String.valueOf(c1Double));
-            stat.setString(5, String.valueOf(c2Double));           
-            stat.setString(6, String.valueOf(c3Double));
-            stat.setString(7, String.valueOf(c4Double));
-            
-            stat.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan");
-            kosong();
-            tnis.requestFocus();
-            datatable2();
         }catch (SQLException e){
             JOptionPane.showMessageDialog(null, "Data Gagal Disimpan"+e);
             System.err.println(e.getMessage());
-        }
+        }   
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnEditMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditMouseEntered
@@ -704,7 +772,41 @@ public class NewInputDataAlternatif extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditMouseExited
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        
+        try{
+            String sql = "UPDATE tb_alternatif1 SET nama=?, c1=?, c2=?, c3 =?, c4=? WHERE nis = ?";
+            PreparedStatement stat = conn.prepareStatement(sql);
+            stat.setString(1, tnamasiswa.getText());
+            stat.setString(2, c1.getText());
+            stat.setString(3, c2.getText());
+            stat.setString(4, c3.getText());
+            stat.setString(5, c4.getText());
+            stat.setString(6, tnis.getText());
+            
+            String sql2 = "UPDATE tb_alternatif2 SET nama=?, c1=?, c2=?, c3 =?, c4=? WHERE nis = ?";
+            PreparedStatement stats = conn.prepareStatement(sql2);
+            
+            double c1Double = Double.parseDouble(c1.getText()) / 100;
+            double c2Double = Double.parseDouble(c2.getText()) / 100;
+            double c3Double = Double.parseDouble(c3.getText()) / 100;
+            double c4Double = Double.parseDouble(c4.getText()) / 100;
+            
+            stats.setString(1, tnamasiswa.getText());
+            stats.setString(2, String.valueOf(c1Double));
+            stats.setString(3, String.valueOf(c2Double));
+            stats.setString(4, String.valueOf(c3Double));
+            stats.setString(5, String.valueOf(c4Double));
+            stats.setString(6, tnis.getText());
+            
+            stat.executeUpdate();
+            stats.executeUpdate();
+            JOptionPane.showMessageDialog(null,"Data Berhasil diubah");
+            kosong();
+            tnis.requestFocus();
+            datatable1();
+            datatable2();
+        }catch (SQLException e){
+            JOptionPane.showMessageDialog(null, "Data Gagal Diubah"+e);
+        }
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnClearMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseEntered
@@ -732,7 +834,25 @@ public class NewInputDataAlternatif extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDeleteMouseExited
 
     private void txtDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDeleteActionPerformed
-        
+        int ok = JOptionPane.showConfirmDialog(null,"Hapus","Konfirmasi Dialog", JOptionPane.YES_NO_OPTION);
+        if (ok==0){
+            String sql = "DELETE from tb_alternatif1 WHERE nis = '"+tnis.getText()+"' ";
+            String sql2 = "DELETE from tb_alternatif2 WHERE nis = '"+tnis.getText()+"' ";
+            try {
+                PreparedStatement stat = conn.prepareStatement(sql);
+                PreparedStatement stats = conn.prepareStatement(sql2);
+                stat.executeUpdate();
+                stats.executeUpdate();
+                
+                JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
+                kosong();
+                tnis.requestFocus();
+                datatable1();
+                datatable2();
+        } catch (SQLException e){
+                JOptionPane.showMessageDialog(null, "Data gagal dihapus"+e);
+            }
+        }     
     }//GEN-LAST:event_txtDeleteActionPerformed
 
     private void btnCariMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCariMouseEntered
@@ -747,11 +867,10 @@ public class NewInputDataAlternatif extends javax.swing.JFrame {
 
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
         //buka menu proses
+        ModelAlternatifSAW.deleteAllRowSAW();
         close();
         NewHasil nh = new NewHasil();
         nh.setVisible(true);
-        
-        
     }//GEN-LAST:event_btnCariActionPerformed
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
@@ -766,6 +885,20 @@ public class NewInputDataAlternatif extends javax.swing.JFrame {
         int y = evt.getYOnScreen();
         this.setLocation(x - xx, y - xy);
     }//GEN-LAST:event_formMouseDragged
+
+    private void tnisKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tnisKeyPressed
+        // TODO add your handling code here:
+        String sql = "select * from tabelsiswa where nis = '"+tnis.getText()+"'";
+        try{
+            java.sql.Statement stat = conn.createStatement();
+            ResultSet hasil = stat.executeQuery(sql);
+            while(hasil.next()){
+                String nama = hasil.getString("nama_siswa");
+                tnamasiswa.setText(nama);
+                tnamasiswa.setEnabled(false);
+            }
+        } catch (Exception e) {}
+    }//GEN-LAST:event_tnisKeyPressed
 
     /**
      * @param args the command line arguments
