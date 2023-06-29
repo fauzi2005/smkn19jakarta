@@ -164,6 +164,11 @@ public class MenuUtama extends javax.swing.JFrame {
                 btnMinimizeMouseEntered(evt);
             }
         });
+        btnMinimize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMinimizeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelHeaderLayout = new javax.swing.GroupLayout(panelHeader);
         panelHeader.setLayout(panelHeaderLayout);
@@ -891,8 +896,13 @@ public class MenuUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAboutMouseExited
 
     private void btnAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAboutActionPerformed
-//        new about(this, rootPaneCheckingEnabled).show();
+        Tentang ten = new Tentang();
+        ten.setVisible(true);
     }//GEN-LAST:event_btnAboutActionPerformed
+
+    private void btnMinimizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMinimizeActionPerformed
 
     /**
      * @param args the command line arguments

@@ -820,7 +820,7 @@ public class NewInputDataAlternatif extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClearMouseExited
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-        
+        kosong();
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void txtDeleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDeleteMouseEntered
